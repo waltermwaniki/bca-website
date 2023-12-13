@@ -1,0 +1,80 @@
+---
+import Logo from "@assets/logo.svg";
+import { Image } from "astro:assets";
+---
+
+<header id="header">
+    <div class="inset header-wrapper">
+        <a href="#home">
+            <Image
+                src={Logo}
+                alt="Berrote Consultancy Associates Logo"
+                id="header-logo"
+            />
+        </a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#mission">Mission</a>
+            <a href="#services">Services</a>
+            <a href="#press">Press</a>
+            <a href="#contact" class="cta primary">Contact</a>
+        </nav>
+    </div>
+</header>
+<script>
+    const logo = document.getElementById("header");
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (!logo) return;
+        if (
+            document.body.scrollTop > 300 ||
+            document.documentElement.scrollTop > 300
+        ) {
+            logo.classList.add("scrolled");
+        } else {
+            logo.classList.remove("scrolled");
+        }
+    }
+</script>
+<style>
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: var(--secondary);
+    }
+    .header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header-wrapper nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+    .header-wrapper nav a:not(.cta) {
+        color: var(--primary);
+        border-bottom: 2px solid transparent;
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            border-color: var(--accent);
+        }
+    }
+
+    #header-logo {
+        transition: all 0.5s ease-in-out;
+        width: clamp(4rem, 6vw, 6rem);
+        height: auto;
+    }
+    header.scrolled {
+        #header-logo {
+            width: 3rem;
+        }
+    }
+</style>

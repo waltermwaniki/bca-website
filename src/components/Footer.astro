@@ -1,0 +1,65 @@
+---
+import { SOCIALS } from "@config";
+import Icon from "astro-icon";
+---
+
+<footer>
+    <div class="inset">
+        <div>
+            <h6>Berotte Consultancy Associates</h6>
+            <p>
+                Supporting the creation of effective student-centered
+                educational institutions.
+            </p>
+        </div>
+        <nav>
+            <a href="#press">Press</a>
+            <div class="socials">
+                {
+                    SOCIALS.map((social) => {
+                        console.log(social.icon.pack);
+                        return (
+                            <a href={social.href}>
+                                <Icon
+                                    pack={social.icon.pack}
+                                    name={social.icon.name}
+                                />
+                            </a>
+                        );
+                    })
+                }
+            </div>
+        </nav>
+    </div>
+</footer>
+<style>
+    footer {
+        background-color: var(--neutral-dark);
+        color: var(--secondary);
+        padding: 1.5rem 0;
+    }
+    footer .inset {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    footer .inset > div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        & h6 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent);
+        }
+        & p {
+            max-width: 400px;
+            font-size: 1.05rem;
+        }
+    }
+    footer .inset nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+</style>

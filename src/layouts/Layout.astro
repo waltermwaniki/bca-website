@@ -1,7 +1,7 @@
 ---
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
-import { SITE, SOCIALS } from "@config";
+import { SITE } from "@config";
 import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
 
@@ -105,10 +105,5 @@ const socialImageURL = new URL(
         navlink.addEventListener("click", updateActiveLink)
       );
     </script>
-    <style is:global>
-      :root {
-      }
-    </style>
-    <style is:global></style>
   </body>
 </html>

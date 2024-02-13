@@ -1,20 +1,20 @@
 :root {
-    --accent-2: hsl(231, 37%, 54%);
-    --accent: #ffd959;
-    --accent-light: rgb(224, 204, 250);
-    --accent-dark: hsl(242, 23%, 25%);
-    --accent-gradient: linear-gradient(45deg,
-            var(--accent),
-            var(--accent-light) 30%,
-            white 60%);
-    --neutral: hsl(32, 27%, 92%);
-    --neutral-dark: hsl(231, 37%, 14%);
-    --surface: hsl(219, 11%, 74%);
     --primary: #4c3d3d;
     --secondary: hsl(204, 100%, 92%);
     --tertiary: hsl(231, 37%, 54%);
+    --accent: navy;
+    --accent-lighter: #ffd959;
+
+    --outline: hsl(206, 7%, 20%);
+    --outline-variant: hsl(0, 0%, 90%);
+
+    --neutral: hsl(0, 0%, 100%);
+    --surface: #1d1d1d;
+
     --header-height: 8rem;
 }
+
+
 
 *,
 *::before,
@@ -42,24 +42,60 @@ h6 {
     text-wrap: balance;
 }
 
+body {
+    font-family: "Source Sans 3 Variable", sans-serif;
+    background-color: var(--neutral);
+    color: var(--primary);
+    line-height: 1.5;
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    grid-template-rows: auto 1fr;
+}
+
+main {
+    scroll-snap-align: start;
+}
+
+section {
+    min-height: 75dvh;
+    padding-block: var(--header-height);
+    scroll-snap-align: center;
+}
+
 .content-grid,
-.full-width {
-    --min-padding-inline: 2rem;
-    --padding-inline: minmax(var(--min-padding-inline), 1fr);
-    --content-width: min(100% - (var(--min-padding-inline) * 2), 1000px);
+.inset-content {
+    --padding-inline: 2rem;
+    --inset-max-width: 1000px;
+    --narrow-max-width: 800px;
+    --narrow2inset-gap: calc((var(--inset-max-width) - var(--narrow-max-width)) / 2);
+}
+
+.content-grid,
+.inset-content {
     display: grid;
-    grid-template-columns: [full-width-start] var(--padding-inline) [content-start] var(--content-width) [content-end] var(--padding-inline) [full-width-end];
-}
+    grid-template-columns:
+        [full-start] minmax(var(--padding-inline), 1fr) [inset-start] minmax(0, var(--narrow2inset-gap)) [narrow-start] min(100% - (var(--padding-inline) * 2), var(--narrow-max-width)) [narrow-end] minmax(0, var(--narrow2inset-gap)) [inset-end] minmax(var(--padding-inline), 1fr) [full-end];
 
-.content-grid>*,
-.full-width>* {
-    grid-column: content;
-}
-
-.content-grid {
-    >.full-width {
-        grid-column: full-width;
+    &>*:not(.inset) {
+        grid-column: inset;
     }
+}
+
+.inset-content {
+    --padding-inline: 1rem;
+}
+
+.content-grid .inset {
+    grid-column: inset;
+}
+
+.content-grid .narrow {
+    grid-column: narrow;
+}
+
+.content-grid .full {
+    grid-column: full;
 }
 
 html {

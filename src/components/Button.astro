@@ -1,0 +1,26 @@
+---
+const { href, className = "", variant = "primary", ...rest } = Astro.props;
+---
+
+<a class:list={[variant, className]} {href} {...rest}><slot>Learn more</slot></a
+>
+
+<style>
+  a {
+    padding: 0.25rem 1.5rem;
+    font-size: 1.15rem;
+    font-weight: 300;
+    border-radius: 8px;
+    border: 2px solid transparent;
+  }
+
+  a.primary {
+    background-color: var(--primary);
+    background-color: #1d1d1d;
+    border-color: var(--primary);
+    color: #fefefe;
+  }
+  a.secondary {
+    border-color: #1d1d1d;
+  }
+</style>

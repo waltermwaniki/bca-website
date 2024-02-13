@@ -1,94 +1,17 @@
 ---
-import Card from "../components/Card.astro";
-import Layout from "../layouts/Layout.astro";
+import Card from "@components/Card.astro";
+import Layout from "@layouts/Layout.astro";
+import About from "@sections/about.astro";
+import Services from "@sections/services.astro";
+import MainBanner from "@sections/main-banner.astro";
+import MissionVision from "@sections/mission-vision.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="content-grid">
-		<section id="home" class="full-width">
-			<div class="banner">
-				<h1 class="tagline">Berotte Consultancy Associates, LLC</h1>
-				<p>
-					Supporting the creation and implementation of effective,
-					student-centered, educational institutions
-				</p>
-				<a class="cta primary" href="#services">Explore Services</a>
-			</div>
-		</section>
-		<section id="about">
-			<h1>Meet the Founder and CEO</h1>
-			<p>
-				Dr. Carole Berotte Joseph is a seasoned professional with over
-				40 years of experience leading & managing educational
-				institutions and developing programs. Through our organizational
-				management consultant group, Berotte Consultancy Associates work
-				collaboratively with a host of other experienced professionals
-				and subject matter experts to support organizations, to respond
-				to their missions. We are master facilitators and experts in
-				capacity building, governance development, sustainability,
-				day-to-day management, operational goal setting, strategic
-				planning, leadership coaching, and performance improvement. We
-				are passionate about connecting & developing ideas, people and
-				entities to full implementation of their potential and support
-				them in making the systemic change that will disrupt the status
-				quo.
-			</p>
-		</section>
-		<section id="mission" class="full-width">
-			<div>
-				<h2>Mission</h2>
-				<p>
-					To steward the creation and implementation of effective,
-					student-centered, educational institutions and programs
-					through capacity building and programmatic accompaniment.
-				</p>
-			</div>
-			<div>
-				<h2>Vission</h2>
-				<p>
-					Serve as the benchmark for just, equitable, student-centered
-					learning environments nationally and internationally
-				</p>
-			</div>
-		</section>
-	</main>
+  <main class="content-grid">
+    <MainBanner />
+    <About />
+    <MissionVision />
+    <Services />
+  </main>
 </Layout>
-
-<style>
-	section {
-		min-height: 75dvh;
-		padding-block: var(--header-height);
-		scroll-snap-align: center;
-	}
-	section.full-width {
-		background-color: var(--secondary);
-	}
-
-	section .banner p {
-		font-size: 2.5rem;
-		font-weight: 350;
-		margin-block-end: 1rem;
-		max-width: 42ch;
-	}
-	section .banner h1.tagline {
-		font-size: 1.05rem;
-		font-weight: 350;
-	}
-	section .banner {
-		margin-block: auto;
-		max-width: 700px;
-		display: flex;
-		flex-flow: column nowrap;
-		gap: 1rem;
-	}
-	a.cta {
-		padding: 0.5rem 1.5rem;
-		font-size: 1.15rem;
-		font-weight: 300;
-		border-radius: 8px;
-		width: max-content;
-		height: max-content;
-	}
-	section#about {
-	}
-</style>

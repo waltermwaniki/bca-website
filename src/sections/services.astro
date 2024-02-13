@@ -1,0 +1,41 @@
+---
+import Accordion from "@components/Accordion.astro";
+import AccordionItem from "@components/AccordionItem.astro";
+import Button from "@components/Button.astro";
+import { servicesCollection } from "@data/services";
+---
+
+<section id="services">
+  <div>
+    <h2>Our Services</h2>
+    <Button className="cta" />
+  </div>
+  <Accordion className="services" padding="2rem" outlined>
+    {
+      servicesCollection.map((service) => (
+        <AccordionItem>
+          <h3 slot="target">{service.title}</h3>
+          <p>{service.description}</p>
+        </AccordionItem>
+      ))
+    }
+  </Accordion>
+</section>
+
+<style>
+  section#services {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+  ul.services {
+    height: max-content;
+  }
+  div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .cta {
+    width: max-content;
+  }
+</style>

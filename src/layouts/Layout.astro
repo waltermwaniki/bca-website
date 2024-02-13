@@ -8,155 +8,107 @@ import { ViewTransitions } from "astro:transitions";
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export interface Props {
-	title?: string;
-	author?: string;
-	description?: string;
-	ogImage?: string;
-	canonicalURL?: string;
+  title?: string;
+  author?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
 }
 
 const {
-	title = SITE.title,
-	author = SITE.author,
-	description = SITE.desc,
-	ogImage = SITE.ogImage,
-	canonicalURL = new URL(Astro.url.pathname, Astro.url.origin).href,
+  title = SITE.title,
+  author = SITE.author,
+  description = SITE.desc,
+  ogImage = SITE.ogImage,
+  canonicalURL = new URL(Astro.url.pathname, Astro.url.origin).href,
 } = Astro.props;
 
 const socialImageURL = new URL(
-	ogImage ?? SITE.ogImage ?? "og.png",
-	Astro.url.origin,
+  ogImage ?? SITE.ogImage ?? "og.png",
+  Astro.url.origin
 ).href;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="canonical" href={canonicalURL} />
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
 
-		<!-- General Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
-		<meta name="author" content={author} />
-		<link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- General Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:image" content={socialImageURL} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={canonicalURL} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={socialImageURL} />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
 
-		<!-- Google Font -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
-			rel="stylesheet"
-		/>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
 
-		<meta name="theme-color" content="" />
+    <meta name="theme-color" content="" />
 
-		{
-			// If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
-			// include google-site-verification tag in the heading
-			// Learn more: https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag
-			googleSiteVerification && (
-				<meta
-					name="google-site-verification"
-					content={googleSiteVerification}
-				/>
-			)
-		}
+    {
+      // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
+      // include google-site-verification tag in the heading
+      // Learn more: https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag
+      googleSiteVerification && (
+        <meta
+          name="google-site-verification"
+          content={googleSiteVerification}
+        />
+      )
+    }
 
-		<ViewTransitions />
-	</head>
-	<body>
-		<Header />
-		<slot />
-		<Footer />
-		<script is:inline>
-			const navLinks = document.querySelectorAll("nav a");
-			function updateActiveLink() {
-				const sectionInView = window.location.href.split("#")[1];
-				if (sectionInView.length) {
-					navLinks.forEach((link) => {
-						console.log(link.href.split("#")[1]);
-						if (link.href.split("#")[1] === sectionInView[1]) {
-							link.classList.add("active");
-						} else {
-							link.classList.remove("active");
-						}
-					});
-				}
-			}
-			navLinks.forEach((navlink) =>
-				navlink.addEventListener("click", updateActiveLink),
-			);
-		</script>
-		<style is:global>
-			body {
-				font-family: "Source Sans 3 Variable", sans-serif;
-				background-color: var(--neutral);
-				color: var(--primary);
-				line-height: 1.5;
-				scroll-snap-type: y proximity;
-				scroll-behavior: smooth;
-				scrollbar-gutter: stable;
-			}
-			main {
-				scroll-snap-align: start;
-			}
-
-			/* .inset {
-				margin: auto;
-				padding: 1rem;
-				width: 1000px;
-				max-width: calc(100% - 2rem);
-			} */
-
-			a.cta {
-				padding: 0.25rem 1.5rem;
-				font-size: 1.15rem;
-				font-weight: 300;
-				border-radius: 8px;
-				border: 2px solid transparent;
-			}
-
-			a.cta.primary {
-				background-color: var(--primary);
-				border-color: var(--primary);
-				color: #fefefe;
-			}
-			a.cta.secondary {
-				border-color: #1d1d1d;
-			}
-
-			.socials {
-				display: flex;
-				gap: 1rem;
-				a {
-					display: flex;
-					flex-flow: column nowrap;
-					justify-content: flex-end;
-				}
-				svg {
-					width: 1.2rem;
-					height: auto;
-					fill: var(--secondary);
-				}
-			}
-		</style>
-	</body>
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+    <script is:inline>
+      const navLinks = document.querySelectorAll("nav a");
+      function updateActiveLink() {
+        const sectionInView = window.location.href.split("#")[1];
+        if (sectionInView.length) {
+          navLinks.forEach((link) => {
+            console.log(link.href.split("#")[1]);
+            if (link.href.split("#")[1] === sectionInView[1]) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      }
+      navLinks.forEach((navlink) =>
+        navlink.addEventListener("click", updateActiveLink)
+      );
+    </script>
+    <style is:global>
+      :root {
+      }
+    </style>
+    <style is:global></style>
+  </body>
 </html>

@@ -1,0 +1,197 @@
+---
+const {
+  allowMultiple = false,
+  transitionDuration = "0.1s",
+  padding = "1rem",
+  outlined = false,
+  className = "",
+  ...rest
+} = Astro.props;
+---
+
+<ul
+  class:list={[className, "accordion", { outlined }]}
+  data-multiple={`${allowMultiple}`}
+  data-transition={`${transitionDuration}`}
+  {...rest}
+>
+  <slot />
+</ul>
+
+<style define:vars={{ transitionDuration, padding }}>
+  .accordion {
+    --accordion-item-border: 1px solid var(--outline-variant);
+    --accordion-border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+
+    .accordion__target {
+      padding-block: calc(var(--padding) * 0.5);
+      padding-inline: var(--padding);
+    }
+
+    .accordion__panel .panel__content {
+      padding-inline: calc(var(--padding) * 1.5);
+      padding-top: 0;
+      transition: padding-top calc(var(--transitionDuration) * 1) ease-out
+        calc(var(--transitionDuration) * 0.5);
+    }
+
+    .accordion__active .panel__content {
+      padding-top: calc(var(--padding) * 0.5);
+    }
+
+    .accordion__active {
+      padding-bottom: var(--padding);
+    }
+  }
+
+  .accordion.outlined {
+    border: var(--accordion-item-border);
+    border-radius: var(--accordion-border-radius);
+    overflow: hidden;
+
+    /* .accordion__item {
+      .accordion__target {
+        border-bottom: var(--accordion-item-border);
+      }
+      &:last-child .accordion__target {
+        border-bottom: none;
+      }
+    } */
+    .accordion__item {
+      border-bottom: var(--accordion-item-border);
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    /* .accordion__active {
+      border-bottom: var(--accordion-item-border);
+      &:last-child {
+        border-bottom: none;
+      }
+      &:last-child .accordion__target {
+        border-bottom: var(--accordion-item-border);
+      }
+    } */
+  }
+</style>
+
+<script type="module">
+  class Accordion {
+    constructor(element) {
+      if (element.dataset.initialized) {
+        return;
+      }
+      this.accordion = element;
+      this.items = this.accordion.querySelectorAll(":scope > .accordion__item");
+      this.accordion.dataset.initialized = true;
+      this.init();
+    }
+
+    init() {
+      this.items.forEach((item, index) => {
+        const accordionItemTarget = item.querySelector(".accordion__target");
+        const accordionItemPanel = item.querySelector(".accordion__panel");
+
+        accordionItemTarget.setAttribute("id", `accordion-item-${index + 1}`);
+        accordionItemPanel.setAttribute("id", `item${index + 1}`);
+
+        accordionItemTarget.setAttribute("aria-controls", `item${index + 1}`);
+        accordionItemPanel.setAttribute(
+          "aria-labelledby",
+          `accordion-item${index + 1}`
+        );
+
+        accordionItemTarget.addEventListener("click", () =>
+          this.toggleItem(item)
+        );
+      });
+
+      this.accordion.addEventListener("closeAll", () => this.closeAllItems());
+
+      document.addEventListener("keydown", (event) => {
+        const accordionItem = event.target.closest(".accordion__item");
+
+        if (event.key !== "Escape") return;
+        if (!accordionItem) return;
+
+        if (this.isItemOpen(accordionItem)) {
+          this.closeItem(accordionItem);
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (!event.target.closest(".accordion__target")) return;
+
+        const accordionWrapper = event.target.closest(".accordion__wrapper");
+        const accordionItem = event.target.closest(".accordion__item");
+        const accordionItems = [
+          ...accordionWrapper.querySelectorAll(".accordion__item"),
+        ];
+        const index = accordionItems.findIndex(
+          (element) => element === accordionItem
+        );
+
+        const { key } = event;
+
+        let targetItem;
+
+        if (key === "ArrowDown") {
+          targetItem = accordionItems[index + 1];
+        }
+
+        if (key === "ArrowUp") {
+          targetItem = accordionItems[index - 1];
+        }
+
+        if (targetItem) {
+          event.preventDefault();
+          targetItem.querySelector(".accordion__target").focus();
+        }
+      });
+    }
+
+    toggleItem(item) {
+      const allowMultiple = this.accordion.dataset.multiple === "true";
+
+      if (!allowMultiple) {
+        this.items.forEach((otherItem) => {
+          if (otherItem !== item) {
+            this.closeItem(otherItem);
+          }
+        });
+      }
+
+      this.isItemOpen(item) ? this.closeItem(item) : this.openItem(item);
+    }
+
+    isItemOpen(item) {
+      return item.classList.contains("accordion__active");
+    }
+
+    openItem(item) {
+      const accordionItemTarget = item.querySelector(".accordion__target");
+      item.classList.add("accordion__active");
+      accordionItemTarget.setAttribute("aria-expanded", true);
+    }
+
+    closeItem(item) {
+      const accordionItemTarget = item.querySelector(".accordion__target");
+      item.classList.remove("accordion__active");
+      accordionItemTarget.focus();
+      accordionItemTarget.setAttribute("aria-expanded", false);
+      const descendantAccordions = item.querySelectorAll(".accordion");
+      descendantAccordions.forEach((accordion) => {
+        accordion.dispatchEvent(new CustomEvent("closeAll"));
+      });
+    }
+
+    closeAllItems() {
+      this.items.forEach((item) => this.closeItem(item));
+    }
+  }
+
+  const accordions = document.querySelectorAll(".accordion");
+  accordions.forEach((accordion) => new Accordion(accordion));
+</script>

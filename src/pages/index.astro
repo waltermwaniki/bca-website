@@ -4,18 +4,18 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<section id="home" class="banner">
-			<div class="inset">
-				<p class="tagline">Berotte Consultancy Associates, LLC</p>
-				<h1>
+	<main class="content-grid">
+		<section id="home" class="full-width">
+			<div class="banner">
+				<h1 class="tagline">Berotte Consultancy Associates, LLC</h1>
+				<p>
 					Supporting the creation and implementation of effective,
 					student-centered, educational institutions
-				</h1>
+				</p>
 				<a class="cta primary" href="#services">Explore Services</a>
 			</div>
 		</section>
-		<section id="about" class="inset">
+		<section id="about">
 			<h1>Meet the Founder and CEO</h1>
 			<p>
 				Dr. Carole Berotte Joseph is a seasoned professional with over
@@ -34,8 +34,8 @@ import Layout from "../layouts/Layout.astro";
 				quo.
 			</p>
 		</section>
-		<section id="mission">
-			<div class="inset">
+		<section id="mission" class="full-width">
+			<div>
 				<h2>Mission</h2>
 				<p>
 					To steward the creation and implementation of effective,
@@ -43,7 +43,7 @@ import Layout from "../layouts/Layout.astro";
 					through capacity building and programmatic accompaniment.
 				</p>
 			</div>
-			<div class="inset">
+			<div>
 				<h2>Vission</h2>
 				<p>
 					Serve as the benchmark for just, equitable, student-centered
@@ -56,28 +56,30 @@ import Layout from "../layouts/Layout.astro";
 
 <style>
 	section {
-		height: 100dvh;
+		min-height: 75dvh;
 		padding-block: var(--header-height);
 		scroll-snap-align: center;
 	}
-	section.banner,
-	section:nth-child(3) {
+	section.full-width {
 		background-color: var(--secondary);
 	}
-	section.banner div.inset {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
-	section.banner h1 {
+
+	section .banner p {
 		font-size: 2.5rem;
 		font-weight: 350;
 		margin-block-end: 1rem;
 		max-width: 42ch;
 	}
-	section.banner p.tagline {
+	section .banner h1.tagline {
 		font-size: 1.05rem;
 		font-weight: 350;
+	}
+	section .banner {
+		margin-block: auto;
+		max-width: 700px;
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 1rem;
 	}
 	a.cta {
 		padding: 0.5rem 1.5rem;
@@ -85,6 +87,7 @@ import Layout from "../layouts/Layout.astro";
 		font-weight: 300;
 		border-radius: 8px;
 		width: max-content;
+		height: max-content;
 	}
 	section#about {
 	}

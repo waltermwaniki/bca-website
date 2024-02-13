@@ -41,3 +41,27 @@ h5,
 h6 {
     text-wrap: balance;
 }
+
+.content-grid,
+.full-width {
+    --min-padding-inline: 2rem;
+    --padding-inline: minmax(var(--min-padding-inline), 1fr);
+    --content-width: min(100% - (var(--min-padding-inline) * 2), 1000px);
+    display: grid;
+    grid-template-columns: [full-width-start] var(--padding-inline) [content-start] var(--content-width) [content-end] var(--padding-inline) [full-width-end];
+}
+
+.content-grid>*,
+.full-width>* {
+    grid-column: content;
+}
+
+.content-grid {
+    >.full-width {
+        grid-column: full-width;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}

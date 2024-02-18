@@ -1,6 +1,6 @@
 ---
 import { SOCIALS } from "@config";
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 ---
 
 <footer class="full inset-content">
@@ -20,7 +20,7 @@ import Icon from "astro-icon";
             console.log(social.icon.pack);
             return (
               <a href={social.href}>
-                <Icon pack={social.icon.pack} name={social.icon.name} />
+                <Icon name={social.icon.name} />
               </a>
             );
           })

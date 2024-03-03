@@ -1,11 +1,11 @@
 ---
 import Logo from "@assets/logo.svg";
 import { Image } from "astro:assets";
-import Button from "./Button.astro";
+import Button from "../components/Button.astro";
 ---
 
 <header id="header" class="content-grid">
-  <div class="inset header-wrapper">
+  <div>
     <a href="#home">
       <Image
         src={Logo}
@@ -46,18 +46,20 @@ import Button from "./Button.astro";
     top: 0;
     width: 100%;
     background-color: var(--secondary);
+    padding-block: 0.5rem;
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
-  .header-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .header-wrapper nav {
+
+  header nav {
     display: flex;
     align-items: center;
     gap: 2rem;
   }
-  .header-wrapper nav a:not(.cta) {
+  header nav a:not(.cta) {
     color: var(--primary);
     border-bottom: 2px solid transparent;
     &:hover,

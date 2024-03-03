@@ -1,0 +1,34 @@
+.content-grid,
+.inset-content {
+    --padding-inline: 2rem;
+    --inset-max-width: 1000px;
+    --narrow-max-width: 800px;
+    --narrow2inset-gap: calc((var(--inset-max-width) - var(--narrow-max-width)) / 2);
+}
+
+.content-grid,
+.inset-content {
+    display: grid;
+    grid-template-columns:
+        [full-start] minmax(var(--padding-inline), 1fr) [inset-start] minmax(0, var(--narrow2inset-gap)) [narrow-start] min(100% - (var(--padding-inline) * 2), var(--narrow-max-width)) [narrow-end] minmax(0, var(--narrow2inset-gap)) [inset-end] minmax(var(--padding-inline), 1fr) [full-end];
+
+    &>*:not(.inset) {
+        grid-column: inset;
+    }
+}
+
+.inset-content {
+    --padding-inline: 1rem;
+}
+
+.content-grid .inset {
+    grid-column: inset;
+}
+
+.content-grid .narrow {
+    grid-column: narrow;
+}
+
+.content-grid .full {
+    grid-column: full;
+}

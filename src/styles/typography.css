@@ -1,19 +1,75 @@
 :root {
-    --primary-font: "Inter", sans-serif;
-    --secondary-font: "Source Sans Pro", sans-serif;
+    --primary-font: 'Inter Variable', sans-serif;
+    --secondary-font: 'Noto Serif Variable', serif;
+    --secondary-font: 'Roboto Serif Variable', serif;
+    --secondary-font: 'Source Serif 4 Variable', serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    text-wrap: balance;
+.display-lg {
     font-family: var(--secondary-font);
+    font-size: 7.5rem;
+    font-weight: 350;
+    line-height: 1.2;
+    text-wrap: balance;
 }
 
-body {
+.heading-lg {
+    font-family: var(--secondary-font);
+    font-size: 4rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: normal;
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.heading-md {
+    font-family: var(--secondary-font);
+    font-size: 2.5rem;
+    font-weight: normal;
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.body-xl {
+    font-family: var(--primary-font);
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+.body-lg {
+    font-family: var(--primary-font);
+    font-size: 1.125rem;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+.body-md {
     font-family: var(--primary-font);
     font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+.body-sm {
+    font-family: var(--primary-font);
+    font-size: 0.875rem;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+.title-lg {
+    font-family: var(--secondary-font);
+    font-size: 1.125rem;
+    font-weight: semibold;
+    line-height: 1.5;
+    text-wrap: balance;
+}
+
+.title-md {
+    font-family: var(--secondary-font);
+    font-size: 1rem;
+    font-weight: semibold;
+    line-height: 1.5;
+    text-wrap: balance;
 }

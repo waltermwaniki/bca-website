@@ -1,15 +1,18 @@
 :root {
-    --primary: #4c3d3d;
-    --secondary: hsl(204, 100%, 92%);
-    --tertiary: hsl(231, 37%, 54%);
-    --accent: navy;
-    --accent-lighter: #FFD93D;
+    --primary: #F3EDE7;
+    --secondary: #664C43;
+    --tertiary: #FFDA5B;
 
-    --outline: hsl(206, 7%, 20%);
-    --outline-variant: hsl(0, 0%, 90%);
+    --neutral-10: hsl(200, 0%, 11%);
+    --neutral-20: hsl(200, 0%, 20%);
+    --neutral-30: hsl(200, 0%, 30%);
+    --neutral-40: hsl(200, 0%, 40%);
+    --neutral-50: hsl(200, 0%, 50%);
+    --neutral-60: hsl(200, 0%, 60%);
+    --neutral-80: hsl(200, 0%, 80%);
+    --neutral-90: hsl(200, 5%, 88%);
+    --neutral-100: hsl(200, 0%, 98%);
 
-    --neutral: hsl(0, 0%, 100%);
-    --surface: #1d1d1d;
-
-    --header-height: 8rem;
+    --text-main: var(--neutral-10);
+    --text-dim: var(--neutral-50);
 }

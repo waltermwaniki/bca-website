@@ -3,14 +3,7 @@
 @import url('./typography.css');
 @import url('./colors.css');
 
-
-
-
 body {
-    font-family: "Source Sans 3 Variable", sans-serif;
-    background-color: var(--neutral);
-    color: var(--primary);
-    line-height: 1.5;
     scroll-snap-type: y proximity;
     scroll-behavior: smooth;
     scrollbar-gutter: stable;

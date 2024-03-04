@@ -1,8 +1,8 @@
-.content-grid,
+/* .content-grid,
 .inset-content {
     --padding-inline: 2rem;
-    --inset-max-width: 1000px;
-    --narrow-max-width: 800px;
+    --inset-max-width: 1350px;
+    --narrow-max-width: 1000px;
     --narrow2inset-gap: calc((var(--inset-max-width) - var(--narrow-max-width)) / 2);
 }
 
@@ -31,4 +31,13 @@
 
 .content-grid .full {
     grid-column: full;
+} */
+
+.inset,
+.inset-content>* {
+    --inset-max-width: 1350px;
+    --padding-inline: 2rem;
+    max-width: var(--inset-max-width);
+    padding-inline: var(--padding-inline);
+    margin-inline: auto;
 }

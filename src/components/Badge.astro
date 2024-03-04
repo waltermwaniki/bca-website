@@ -1,0 +1,32 @@
+---
+const { className = "", variant = "primary", ...rest } = Astro.props;
+---
+
+<div class:list={["badge", variant, className, "body-sm"]} {...rest}>
+  <slot>News Article</slot>
+</div>
+
+<style>
+  .badge {
+    display: inline-block;
+    padding-inline: 0.375rem;
+    border: 1px solid transparent;
+    width: max-content;
+    border-radius: 0.25rem;
+  }
+
+  .badge.primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--neutral-100);
+  }
+  .badge.secondary {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  .badge.tertiary {
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
+    color: var(--neutral-10);
+  }
+</style>

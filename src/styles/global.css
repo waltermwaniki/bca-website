@@ -15,7 +15,8 @@ main {
 }
 
 section {
-    min-height: 75dvh;
+    /* min-height: 75dvh; */
+    margin-block: 4rem;
     padding-block: var(--header-height);
     scroll-snap-align: center;
 }

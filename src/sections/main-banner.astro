@@ -3,27 +3,40 @@ import Button from "@components/Button.astro";
 ---
 
 <section id="home">
-  <h1 class="tagline">Berotte Consultancy Associates, LLC</h1>
-  <p class="description">
-    Supporting the creation and implementation of effective, student-centered,
-    educational institutions
-  </p>
-  <Button className="cta" href="#services">Explore Services</Button>
+  <div class="inset">
+    <p class="body-md tagline">Transforming learning, Enriching lives</p>
+    <h1 class="display-lg headline">
+      Berotte<br />Consultancy<br />Associates
+    </h1>
+    <p class="body-xl description">
+      We support the creation and implementation of effective, student-centered,
+      educational institutions.
+    </p>
+    <div class="cta-group">
+      <Button href="#services">Explore Services</Button>
+      <Button href="#services" variant="secondary">Get In Touch</Button>
+    </div>
+  </div>
 </section>
+
 <style>
-  section h1.tagline {
-    font-size: 1.05rem;
-    font-weight: 350;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+  section {
+    background-color: var(--secondary);
   }
-  section p.description {
-    font-size: 2.5rem;
-    font-weight: 350;
-    max-width: 32ch;
+  .inset {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
-  .cta {
-    margin-top: 4rem;
-    padding: 0.75rem 1.5rem;
+
+  .headline,
+  .tagline {
+    text-transform: uppercase;
+  }
+  .tagline {
+    max-width: 80vw;
+  }
+  .description {
+    max-width: 50ch;
   }
 </style>

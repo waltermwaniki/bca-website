@@ -1,22 +1,23 @@
 :root {
     --primary-font: 'Inter Variable', sans-serif;
-    --secondary-font: 'Noto Serif Variable', serif;
     --secondary-font: 'Roboto Serif Variable', serif;
     --secondary-font: 'Source Serif 4 Variable', serif;
+    --secondary-font: 'Noto Serif Variable', serif;
 }
 
 .display-lg {
     font-family: var(--secondary-font);
     font-size: 7.5rem;
+    font-size: clamp(3.2rem, 8vw, 7.5rem);
     font-weight: 350;
-    line-height: 1.2;
+    line-height: 1.1;
     text-wrap: balance;
 }
 
 .heading-lg {
     font-family: var(--secondary-font);
     font-size: 4rem;
-    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-size: clamp(2.5rem, 4vw, 3.2rem);
     font-weight: normal;
     line-height: 1.2;
     text-wrap: balance;
@@ -33,13 +34,15 @@
 .body-xl {
     font-family: var(--primary-font);
     font-size: 1.5rem;
-    font-weight: normal;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-weight: 300;
     line-height: 1.5;
 }
 
 .body-lg {
     font-family: var(--primary-font);
     font-size: 1.125rem;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
     font-weight: 300;
     line-height: 1.5;
 }
@@ -47,7 +50,8 @@
 .body-md {
     font-family: var(--primary-font);
     font-size: 1rem;
-    font-weight: normal;
+    font-size: clamp(0.95rem, 1.25vw, 1rem);
+    font-weight: 300;
     line-height: 1.5;
 }
 

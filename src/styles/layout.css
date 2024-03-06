@@ -41,3 +41,13 @@
     padding-inline: var(--padding-inline);
     margin-inline: auto;
 }
+
+section {
+    padding-block: clamp(4rem, 10vw, 7.5rem);
+}
+
+.cta-group {
+    display: flex;
+    gap: 2rem;
+    margin-block-start: 1.5rem;
+}

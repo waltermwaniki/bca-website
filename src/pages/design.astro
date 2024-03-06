@@ -6,6 +6,9 @@ import Badge from "@components/Badge.astro";
 
 <Layout title="BCA Design">
   <main class="inset-content">
+    <section>
+      <a class="title-md" href="/">Home</a>
+    </section>
     <section class="typography">
       <h2 class="heading-md"><a href="#">Typography</a></h2>
       <div>Display Large</div>
@@ -55,11 +58,11 @@ import Badge from "@components/Badge.astro";
     </section>
     <section class="inset">
       <h2 class="heading-md"><a href="#">Buttons</a></h2>
-      <Button>Explore Services</Button>
-      <Button variant="secondary">Contact Us</Button>
+      <Button href="/#services">Explore Services</Button>
+      <Button href="/#contact" variant="secondary">Contact Us</Button>
     </section>
     <section class="inset">
-      <h2>Badge</h2>
+      <h2 class="heading-md"><a href="#">Badge</a></h2>
       <Badge variant="primary">Featured</Badge>
       <Badge variant="secondary">Featured</Badge>
       <Badge variant="tertiary">Featured</Badge>
@@ -73,6 +76,7 @@ import Badge from "@components/Badge.astro";
       }
       h2:has(a) {
         margin-top: 2rem;
+        margin-bottom: 1rem;
       }
       a {
         color: var(--primary);

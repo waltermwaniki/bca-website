@@ -3,24 +3,6 @@
 @import url('./typography.css');
 @import url('./colors.css');
 
-body {
-    scroll-snap-type: y proximity;
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable;
-    grid-template-rows: auto 1fr;
-}
-
-main {
-    scroll-snap-align: start;
-}
-
-section {
-    /* min-height: 75dvh; */
-    margin-block: 4rem;
-    padding-block: var(--header-height);
-    scroll-snap-align: center;
-}
-
 
 
 html {

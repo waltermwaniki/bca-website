@@ -5,9 +5,17 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
 ---
 
 <section id="founder">
-  <div class="inset">
-    <div class="content">
-      <h1 class="heading-lg">Meet Our Founder and CEO</h1>
+  <h1 class="inset heading-lg">Meet Our Founder and CEO</h1>
+  <div class="inset content">
+    <Image
+      class="right-img"
+      src={carolePortrait}
+      alt="A portrait  of Dr. Carole Berotte Joseph."
+      densities={[1.5, 2]}
+      width="400"
+      height="400"
+    />
+    <div class="text-cta-group">
       <p class="body-xl description">
         Dr. Joseph's distinguished career is marked by her tenure as President
         of Bronx Community College and her commitment to academic innovation and
@@ -22,15 +30,6 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
         <Button href="#" variant="secondary">Learn More</Button>
       </div>
     </div>
-    <div class="image-container">
-      <Image
-        src={carolePortrait}
-        alt="A portrait  of Dr. Carole Berotte Joseph."
-        densities={[1.5, 2]}
-        width="300"
-        height="400"
-      />
-    </div>
   </div>
 </section>
 <style>
@@ -39,23 +38,37 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
   }
   .heading-lg {
     color: var(--primary);
-  }
-  .inset {
-    display: flex;
-    gap: 4rem;
+    margin-bottom: 1rem;
   }
   .content {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 2rem;
-  }
-  .image-container {
-    flex: 1 1 0;
-    max-width: 50%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(1rem, 5vw, 2rem);
+    container-type: inline-size;
+    transform: scaleX(-1);
   }
   img {
     width: 100%;
-    height: auto;
-    border: 2px solid coral;
+    height: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 1rem;
+    transform: scaleX(-1);
+  }
+  .text-cta-group {
+    min-width: 300px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    transform: scaleX(-1);
+  }
+  @container (min-width: 600px) {
+    .text-cta-group {
+      grid-column: 2 / -1;
+    }
+    img {
+      height: 100%;
+    }
   }
 </style>

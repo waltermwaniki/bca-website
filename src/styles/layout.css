@@ -36,18 +36,19 @@
 .inset,
 .inset-content>* {
     --inset-max-width: 1350px;
-    --padding-inline: 2rem;
+    --padding-inline: clamp(1rem, 4vw, 2rem);
     max-width: var(--inset-max-width);
     padding-inline: var(--padding-inline);
     margin-inline: auto;
 }
 
 section {
-    padding-block: clamp(4rem, 10vw, 7.5rem);
+    padding-block: clamp(3rem, 5vw, 6rem);
 }
 
 .cta-group {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 3.2vw, 2rem);
     margin-block-start: 1.5rem;
 }

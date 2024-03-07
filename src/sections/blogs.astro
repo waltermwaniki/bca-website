@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+const blogEntries = await getCollection("blogs");
+---
+
+<section id="in-the-press">
+  <h1 class="inset heading-lg">In the Press</h1>
+  <div id="blogs" class="inset blogs">
+    {
+      blogEntries.map((blogPostEntry) => (
+        <li class="link-card">
+          <a href={blogPostEntry.data.url}>
+            <Image
+              src={blogPostEntry.data.image}
+              alt={blogPostEntry.data.title}
+              width="1024"
+              height="1600"
+            />
+            <p class="body-sm">{blogPostEntry.data.title}</p>
+          </a>
+        </li>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .blogs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1rem 2rem;
+    margin-block: 1rem;
+  }
+  .link-card {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    background-color: var(--secondary);
+    border-radius: 7px;
+    border: 1px solid var(--primary);
+    padding-bottom: 2rem;
+  }
+  .link-card > a {
+    width: 100%;
+    text-decoration: none;
+    line-height: 1.4;
+    border-radius: 8px;
+    color: black;
+    background-color: var(--secondary);
+    opacity: 0.8;
+  }
+  img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  p.body-sm {
+    font-size: 1.05rem;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    font-weight: 300;
+  }
+  .link-card:is(:hover, :focus-within) {
+    background-position: 0;
+    background-image: var(--accent-gradient);
+  }
+  .link-card:is(:hover, :focus-within) h2 {
+    color: rgb(var(--accent-lighter));
+  }
+  .heading-lg {
+    color: var(--primary);
+  }
+</style>

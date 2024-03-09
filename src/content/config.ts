@@ -7,6 +7,7 @@ const blogs = defineCollection({
         tags: z.array(z.string()).optional(),
         image: image(),
         pubDate: z.date(),
+        excerpt: z.string().max(800),
         isDraft: z.boolean(),
         isExternal: z.boolean(),
         url: z.string().optional(),

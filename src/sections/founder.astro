@@ -44,7 +44,6 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: clamp(1rem, 5vw, 2rem);
-    container-type: inline-size;
     transform: scaleX(-1);
   }
   img {
@@ -63,12 +62,12 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
     justify-content: space-around;
     transform: scaleX(-1);
   }
-  @container (min-width: 600px) {
+  @media screen and (min-width: 720px) {
     .text-cta-group {
       grid-column: 2 / -1;
     }
     img {
-      height: 100%;
+      grid-column: 1 / 2;
     }
   }
 </style>

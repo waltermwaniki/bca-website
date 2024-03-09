@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import Card from "@components/Card.astro";
 const blogEntries = await getCollection("blogs");
 ---
 
@@ -9,17 +9,12 @@ const blogEntries = await getCollection("blogs");
   <div id="blogs" class="inset blogs">
     {
       blogEntries.map((blogPostEntry) => (
-        <li class="link-card">
-          <a href={blogPostEntry.data.url}>
-            <Image
-              src={blogPostEntry.data.image}
-              alt={blogPostEntry.data.title}
-              width="1024"
-              height="1600"
-            />
-            <p class="body-sm">{blogPostEntry.data.title}</p>
-          </a>
-        </li>
+        <Card
+          title={blogPostEntry.data.title}
+          body={blogPostEntry.data.url || "Read More"}
+          href={blogPostEntry.data.url || blogPostEntry.slug}
+          layout="landscape"
+        />
       ))
     }
   </div>
@@ -32,7 +27,10 @@ const blogEntries = await getCollection("blogs");
     gap: 1rem 2rem;
     margin-block: 1rem;
   }
-  .link-card {
+  .heading-lg {
+    color: var(--primary);
+  }
+  /* .link-card {
     list-style: none;
     display: flex;
     gap: 5px;
@@ -68,8 +66,5 @@ const blogEntries = await getCollection("blogs");
   }
   .link-card:is(:hover, :focus-within) h2 {
     color: rgb(var(--accent-lighter));
-  }
-  .heading-lg {
-    color: var(--primary);
-  }
+  } */
 </style>

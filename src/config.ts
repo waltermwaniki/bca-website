@@ -28,5 +28,14 @@ export const SOCIALS: SocialObjects = [
         icon: {
             name: "mail",
         },
+    },
+    {
+        name: "Phone",
+        href: "mailto:8454530183",
+        active: true,
+        linkTitle: "phone",
+        icon: {
+            name: "phone",
+        },
     }
 ];

@@ -3,16 +3,18 @@
     --secondary: #F3EDE7;
     --tertiary: #FFDA5B;
 
-    --neutral-10: hsl(200, 0%, 11%);
-    --neutral-20: hsl(200, 0%, 20%);
-    --neutral-30: hsl(200, 0%, 30%);
-    --neutral-40: hsl(200, 0%, 40%);
-    --neutral-50: hsl(200, 0%, 50%);
-    --neutral-60: hsl(200, 0%, 60%);
-    --neutral-80: hsl(200, 0%, 80%);
-    --neutral-90: hsl(200, 5%, 88%);
-    --neutral-100: hsl(200, 0%, 98%);
+    --neutral-10: hsl(210, 0%, 11%);
+    --neutral-20: hsl(210, 0%, 20%);
+    --neutral-30: hsl(210, 0%, 30%);
+    --neutral-40: hsl(210, 0%, 40%);
+    --neutral-50: hsl(210, 0%, 50%);
+    --neutral-60: hsl(210, 0%, 60%);
+    --neutral-80: hsl(210, 0%, 80%);
+    --neutral-90: hsl(210, 7%, 89%);
+    --neutral-100: hsl(210, 0%, 98%);
 
     --text-main: var(--neutral-10);
     --text-dim: var(--neutral-50);
+
+    --bg-gray: var(--neutral-90);
 }

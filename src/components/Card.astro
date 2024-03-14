@@ -1,30 +1,69 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   title: string;
-  body: string;
   href?: string;
   meta?: string;
+  image: ImageMetadata;
   layout: "landscape" | "portrait";
 }
 
-const { href, title, body, meta, layout } = Astro.props;
+const { href, title, meta, layout, image } = Astro.props;
 ---
 
 <article class={layout}>
   <a href={href}>
-    <hgroup>
-      <p>{meta}</p>
-      <h3>{title}</h3>
-    </hgroup>
-    <p>
-      {body}
-    </p>
+    <Image src={image} alt={title} width={600} height={400} />
+    <div class="card-content">
+      <hgroup>
+        <p class="body-xs">{meta}</p>
+        <h3 class="title-md">{title}</h3>
+      </hgroup>
+      <slot />
+    </div>
   </a>
-</article>
 
-<style>
-  article.landscape a {
-    display: grid;
-    grid-template-columns: auto 1fr;
-  }
-</style>
+  <style>
+    article.landscape a {
+      display: flex;
+      gap: 1.125rem;
+      max-width: 62rem;
+      img {
+        width: 12rem;
+        height: 8rem;
+        aspect-ratio: 3 / 2;
+      }
+    }
+
+    article.portrait a {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3/2;
+      }
+      hgroup {
+        max-width: min(90%, 42rem);
+        margin-bottom: 1rem;
+      }
+    }
+
+    hgroup {
+      max-width: 90%;
+      margin-bottom: 0.5rem;
+      p:first-child {
+        text-transform: uppercase;
+        font-weight: 350;
+      }
+    }
+
+    article img {
+      border-radius: 0.25rem;
+      object-fit: cover;
+      object-position: top;
+    }
+  </style>
+</article>

@@ -1,0 +1,42 @@
+---
+import { YouTube } from "astro-embed";
+interface Props {
+  title: string;
+  description: string;
+  id: string;
+  date: Date;
+}
+const { title, description, id, date } = Astro.props;
+---
+
+<article>
+  <YouTube {id} />
+  <div class="card-content">
+    <hgroup>
+      <p class="body-xs">{date}</p>
+      <h3 class="title-md">{title}</h3>
+    </hgroup>
+    <p class="body-md">{description}</p>
+  </div>
+</article>
+
+<style>
+  article {
+    display: flex;
+    flex-direction: column;
+  }
+  hgroup {
+    max-width: min(90%, 42rem);
+    margin-bottom: 1rem;
+  }
+  .card-content {
+    --_card-border: 1px solid var(--primary);
+    padding-block: 1.5rem;
+    padding-inline: 1rem;
+    border-right: var(--_card-border);
+    border-left: var(--_card-border);
+    border-bottom: var(--_card-border);
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+</style>

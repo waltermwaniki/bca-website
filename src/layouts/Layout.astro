@@ -8,6 +8,8 @@ import "@styles/global.css";
 import { SITE } from "@config";
 import { ViewTransitions } from "astro:transitions";
 
+import Footer from "@sections/footer.astro";
+
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export interface Props {
@@ -100,5 +102,6 @@ const socialImageURL = new URL(
         navlink.addEventListener("click", updateActiveLink)
       );
     </script>
+    <Footer />
   </body>
 </html>

@@ -14,6 +14,15 @@
     text-wrap: balance;
 }
 
+.display-sm {
+    font-family: var(--secondary-font);
+    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 350;
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
 .heading-lg {
     font-family: var(--secondary-font);
     font-size: 4rem;
@@ -36,7 +45,7 @@
     font-size: 1.5rem;
     font-size: clamp(1.125rem, 2vw, 1.5rem);
     font-weight: 300;
-    line-height: 1.5;
+    line-height: 1.75;
 }
 
 .body-lg {
@@ -47,11 +56,20 @@
     line-height: 1.5;
 }
 
+p,
 .body-md {
     font-family: var(--primary-font);
     font-size: 1rem;
     font-size: clamp(0.95rem, 1.25vw, 1rem);
     font-weight: 300;
+    line-height: 1.5;
+}
+
+small,
+.body-sm {
+    font-family: var(--primary-font);
+    font-size: 0.875rem;
+    font-weight: normal;
     line-height: 1.5;
 }
 
@@ -64,7 +82,7 @@
 
 .title-lg {
     font-family: var(--secondary-font);
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     font-weight: semibold;
     line-height: 1.5;
     text-wrap: balance;
@@ -72,8 +90,7 @@
 
 .title-md {
     font-family: var(--secondary-font);
-    font-size: 1rem;
-    font-weight: semibold;
+    font-size: 1.125rem;
+    font-weight: 600;
     line-height: 1.5;
-    text-wrap: balance;
 }

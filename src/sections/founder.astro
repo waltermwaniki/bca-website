@@ -4,9 +4,9 @@ import { Image } from "astro:assets";
 import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
 ---
 
-<section id="founder">
-  <h1 class="inset heading-lg">Meet Our Founder and CEO</h1>
-  <div class="inset content">
+<section id="founder" class="content-grid">
+  <h1 class="heading-lg">Meet Our Founder and CEO</h1>
+  <div class="content">
     <Image
       class="right-img"
       src={carolePortrait}
@@ -38,13 +38,12 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
   }
   .heading-lg {
     color: var(--primary);
-    margin-bottom: 1rem;
+    margin-bottom: clamp(1rem, 8vw, 2.5rem);
   }
   .content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem clamp(1rem, 8vw, 8rem);
-    container-type: inline-size;
     transform: scaleX(-1);
   }
   img {
@@ -62,6 +61,7 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
     justify-self: end;
     display: flex;
     flex-flow: column nowrap;
+    gap: 1rem;
     justify-content: space-around;
     transform: scaleX(-1);
   }

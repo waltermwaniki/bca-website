@@ -3,60 +3,60 @@ import { SOCIALS } from "@config";
 import { Icon } from "astro-icon/components";
 ---
 
-<footer class="full inset-content">
-  <div class="wrapper">
-    <div>
-      <h6>Berotte Consultancy Associates</h6>
-      <p>
-        Supporting the creation of effective student-centered educational
-        institutions.
-      </p>
+<footer class="content-grid">
+  <h6 class="display-sm">Berotte Consultancy Associates</h6>
+  <nav>
+    <div class="socials">
+      {
+        SOCIALS.map((social) => {
+          console.log(social.icon.pack);
+          return (
+            <a href={social.href}>
+              <Icon name={social.icon.name} />
+            </a>
+          );
+        })
+      }
     </div>
-    <nav>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#press">Services</a>
       <a href="#press">Press</a>
-      <div class="socials">
-        {
-          SOCIALS.map((social) => {
-            console.log(social.icon.pack);
-            return (
-              <a href={social.href}>
-                <Icon name={social.icon.name} />
-              </a>
-            );
-          })
-        }
-      </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
+
   <style>
     footer {
-      background-color: var(--surface);
+      background-color: color-mix(in srgb, var(--primary) 10%, #45413f 90%);
       color: var(--secondary);
-      padding: 1.5rem 0;
-    }
-    footer .wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    footer .wrapper > div {
+      text-align: center;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 1rem;
-      & h6 {
-        font-size: 1.5rem;
-        font-weight: 300;
-        color: var(--accent-lighter);
-      }
-      & p {
-        max-width: 400px;
-        font-size: 1.05rem;
+    }
+    footer h6 {
+      text-decoration: uppercase;
+      max-width: 20ch;
+    }
+    footer nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .socials {
+      display: flex;
+      gap: 1rem;
+      svg {
+        width: 2rem;
+        height: 2rem;
+        stroke: currentColor;
       }
     }
-    footer .wrapper nav {
+    .links {
       display: flex;
-      align-items: center;
-      gap: 2rem;
+      gap: 1rem;
     }
   </style>
 </footer>

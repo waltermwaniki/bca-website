@@ -19,6 +19,7 @@ export type SocialMedia =
     | "Instagram"
     | "LinkedIn"
     | "Mail"
+    | "Phone"
     | "Twitter"
     | "YouTube"
     | "WhatsApp";

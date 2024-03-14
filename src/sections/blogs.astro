@@ -1,70 +1,95 @@
 ---
 import { getCollection } from "astro:content";
 import Card from "@components/Card.astro";
+import VideoCard from "@components/VideoCard.astro";
 const blogEntries = await getCollection("blogs");
+const featuredBlog = blogEntries.shift();
 ---
 
-<section id="in-the-press">
+<section id="articles" class="content-grid">
   <h1 class="inset heading-lg">In the Press</h1>
-  <div id="blogs" class="inset blogs">
-    {
-      blogEntries.map((blogPostEntry) => (
-        <Card
-          title={blogPostEntry.data.title}
-          body={blogPostEntry.data.url || "Read More"}
-          href={blogPostEntry.data.url || blogPostEntry.slug}
-          layout="landscape"
-        />
-      ))
+  <div class="inset blogs">
+    {featuredBlog &&
+    <div class="featured-blog">
+      <Card
+        title={featuredBlog.data.title}
+        meta={featuredBlog.data.pubDate.toDateString() || "Published"}
+        href={featuredBlog.data.url || featuredBlog.slug}
+        image={featuredBlog.data.image}
+        layout="portrait",
+      >
+      {featuredBlog.data.excerpt || "Read More"}
+      </Card>
+    </div>
     }
+    <div class="blogs-list">
+      {
+        blogEntries.map((blogPostEntry) => (
+          <Card
+            title={blogPostEntry.data.title}
+            meta={blogPostEntry.data.pubDate.toDateString() || "Published"}
+            href={blogPostEntry.data.url || blogPostEntry.slug}
+            image={blogPostEntry.data.image}
+            layout="landscape",
+          >
+          <p class="body-sm">{blogPostEntry.data.excerpt || "Read More"}</p>
+          </Card>
+          <hr />
+        ))
+      }
+    </div>
+  </div>
+  <div class="inset video-carousel">
+    <VideoCard
+      title="Bronx Community College: Defining What Matters."
+      description="Science, technology majors, engineering, and mathematics are among the most in-demand courses of study at Bronx Community College. President Carole M. Berotte Joseph talks STEM with a current student, an alum, and the chair of the BCC Chemistry department."
+      date={new Date("September 17, 2014")}
+      id="CEKxhowaqdQ"
+      />
+    <VideoCard
+      title="Bronx Community College: Defining What Matters."
+      description="Science, technology majors, engineering, and mathematics are among the most in-demand courses of study at Bronx Community College. President Carole M. Berotte Joseph talks STEM with a current student, an alum, and the chair of the BCC Chemistry department."
+      date={new Date("September 17, 2014")}
+      id="CEKxhowaqdQ"
+      />
   </div>
 </section>
 
 <style>
-  .blogs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 1rem 2rem;
-    margin-block: 1rem;
+  section#articles {
+    background-color: var(--bg-gray);
   }
-  .heading-lg {
+.heading-lg {
     color: var(--primary);
+    margin-bottom: clamp(1rem, 5vw, 2rem);
   }
-  /* .link-card {
-    list-style: none;
+  .blogs {
     display: flex;
-    gap: 5px;
-    background-color: var(--secondary);
-    border-radius: 7px;
-    border: 1px solid var(--primary);
-    padding-bottom: 2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 5vw, 3rem);
   }
-  .link-card > a {
-    width: 100%;
-    text-decoration: none;
-    line-height: 1.4;
-    border-radius: 8px;
-    color: black;
-    background-color: var(--secondary);
-    opacity: 0.8;
+  .featured-blog {
+    flex: 1 1 26rem;
   }
-  img {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    border-radius: 8px;
+  .blogs-list {
+    flex: 10 2 50%;
+    min-width: 36rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2rem;
   }
-  p.body-sm {
-    font-size: 1.05rem;
-    padding-inline: 1rem;
-    padding-block: 1rem;
-    font-weight: 300;
+  hr {
+    border: 0;
+    height: 1px;
+    background: var(--primary);
+    opacity: 0.5;
   }
-  .link-card:is(:hover, :focus-within) {
-    background-position: 0;
-    background-image: var(--accent-gradient);
+  .video-carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    gap: clamp(1rem, 5vw, 3rem);
+    margin-block-start: 2rem;
   }
-  .link-card:is(:hover, :focus-within) h2 {
-    color: rgb(var(--accent-lighter));
-  } */
 </style>

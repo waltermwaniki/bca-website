@@ -1,0 +1,88 @@
+---
+const aboutItems = [
+  {
+    title: "Who are we?",
+    content:
+      "At Berotte Consultancy Associates, we're dedicated to transforming the educational landscape. Our mission is to steward the development of educational environments where students are at the heart of learning—ensuring every institution we touch fosters innovation, engagement, and equity. Our vision is to be at the forefront of creating equitable, engaging, and effective learning environments worldwide.",
+  },
+  {
+    title: "What do we do?",
+    content:
+      "We provide a range of services to educational institutions, including strategic planning, professional development, and curriculum design. Our team of experts is dedicated to ensuring that every student has access to a high-quality education that prepares them for success in the 21st century.",
+  },
+  {
+    title: "Why choose us?",
+    content:
+      "We have a proven track record of success in transforming educational institutions. Our team of experts has decades of experience in the field and is dedicated to ensuring that every student has access to a high-quality education. We are committed to creating equitable, engaging, and effective learning environments that prepare students for success in the 21st century.",
+  },
+];
+---
+
+<section id="about" class="content-grid">
+  <div class="inset">
+    {
+      aboutItems.map((item, index) => {
+        return (
+          <div class="about-item">
+            <h2 class="heading-md">
+              {item.title}
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="12" />
+              </svg>
+            </h2>
+            <p class="body-lg">{item.content}</p>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .about-item {
+    --_item-padding-left: 2rem;
+    --_svg-size: 1.5rem;
+    max-width: 42rem;
+  }
+
+  .about-item > h2 {
+    position: relative;
+    padding-left: var(--_item-padding-left);
+    border-left-style: solid;
+    border-left-width: 2px;
+  }
+
+  .about-item:first-of-type > h2 {
+    border-image: linear-gradient(
+        to top,
+        var(--primary),
+        var(--primary) 50%,
+        transparent 50%,
+        transparent
+      )
+      2;
+  }
+
+  .about-item:not(:first-of-type) > h2 {
+    border-left-color: var(--primary);
+  }
+
+  .body-lg {
+    padding-left: var(--_item-padding-left);
+    border-left: 2px solid var(--primary);
+    padding-top: 1rem;
+  }
+
+  .about-item:not(:last-of-type) > .body-lg {
+    padding-bottom: 3rem;
+  }
+  svg {
+    width: var(--_svg-size);
+    height: var(--_svg-size);
+    fill: var(--primary);
+    position: absolute;
+    top: 50%;
+    left: calc(-1 * var(--_svg-size) / 2);
+    transform: translateY(-50%);
+  }
+</style>

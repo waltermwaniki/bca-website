@@ -4,8 +4,9 @@ import { Icon } from "astro-icon/components";
 ---
 
 <footer class="content-grid">
-  <h6 class="display-sm">Berotte Consultancy Associates</h6>
-  <nav>
+  <Icon name="logo" />
+  <h6 class="display-sm">Berotte <br>Consultancy Associates</h6>
+  <nav class="inset">
     <div class="socials">
       {
         SOCIALS.map((social) => {
@@ -18,26 +19,40 @@ import { Icon } from "astro-icon/components";
         })
       }
     </div>
-    <div class="links">
-      <a href="#about">About</a>
+    <div class="links body-lg">
+      <a class="body-lg" href="#about">About</a>
       <a href="#press">Services</a>
       <a href="#press">Press</a>
+    </div>
+    <div class="footer-text body-md">
+      <p>© 2024  All rights reserved</p>
+      <a href="#home">Back to Top</a>
     </div>
   </nav>
 
   <style>
     footer {
+      --_gap:2rem;
       background-color: color-mix(in srgb, var(--primary) 10%, #45413f 90%);
       color: var(--secondary);
       text-align: center;
-      display: flex;
-      flex-direction: column;
+      /* gap: 2rem; */
       align-items: center;
-      gap: 1rem;
+      width: 100%;
+      padding-block: clamp(1.5rem, 2vw, 2rem);
+      border-top-left-radius: .75rem;
+      border-top-right-radius: .75rem;
+    }
+    footer [data-icon="logo"] {
+      --logo-size: clamp(5rem, 10vw, 9.375rem);
+      width: var(--logo-size);
+      height: var(--logo-size);
+      margin-inline: auto;
+      margin-bottom: var(--_gap);
     }
     footer h6 {
-      text-decoration: uppercase;
-      max-width: 20ch;
+      text-transform: uppercase;
+      margin-bottom: var(--_gap);
     }
     footer nav {
       display: flex;
@@ -52,11 +67,18 @@ import { Icon } from "astro-icon/components";
         width: 2rem;
         height: 2rem;
         stroke: currentColor;
+        stroke-width: 3;
       }
     }
     .links {
       display: flex;
       gap: 1rem;
+    }
+    .footer-text{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
     }
   </style>
 </footer>

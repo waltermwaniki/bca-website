@@ -33,8 +33,7 @@
     grid-column: full;
 }
 
-section,
-footer {
+section {
     padding-block: clamp(3rem, 5vw, 6rem);
 }
 

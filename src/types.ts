@@ -8,6 +8,7 @@ export type Site = {
 
 export type SocialObjects = {
     name: SocialMedia;
+    text: string;
     href: string;
     active: boolean;
     linkTitle: string;

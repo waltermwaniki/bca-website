@@ -207,8 +207,8 @@ const aboutItems = [
     position: relative;
   }
   .about-item {
-    --_item-padding-left: 2rem;
-    --_svg-size: 1.5rem;
+    --_item-padding-left: clamp(1rem, 2vw, 2rem);
+    --_svg-size: clamp(1rem, 2vw, 1.5rem);
     max-width: 70%;
     @media screen and (max-width: 680px) {
       max-width: 90%;

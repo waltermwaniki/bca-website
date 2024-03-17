@@ -141,7 +141,7 @@ const aboutItems = [
     </svg>
     <div class="ruler">
       {
-        Array.from({ length: 15 }, (_, i) => (
+        Array.from({ length: 25 }, (_, i) => (
           <svg
             width="110"
             height="50"
@@ -161,7 +161,7 @@ const aboutItems = [
               fill="black"
               alignment-baseline="middle"
             >
-              {i}
+              {i + 1}
             </text>
           </svg>
         ))
@@ -187,33 +187,32 @@ const aboutItems = [
     padding-inline-end: 0.5rem;
     padding-block: 0.5rem;
     height: 100%;
-    width: clamp(120px, 10vw, 9rem);
     object-fit: cover;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-rows: auto;
+    overflow-y: hidden;
     transform: translateX(100%) translateY(-50%);
-    & > svg {
-      margin-right: 2rem;
-    }
   }
 
   section#about > .vertical-line {
     position: absolute;
     top: 0;
     right: 4.5rem;
-    /* transform: translateX(-50%); */
     width: 1px;
     height: 100%;
     background-color: black;
   }
+
   section#about .inset {
     position: relative;
   }
   .about-item {
     --_item-padding-left: 2rem;
     --_svg-size: 1.5rem;
-    max-width: 42rem;
     max-width: 70%;
+    @media screen and (max-width: 680px) {
+      max-width: 90%;
+    }
   }
 
   .about-item > h2 {
@@ -268,6 +267,12 @@ const aboutItems = [
     aspect-ratio: 310 / 250;
     height: auto;
     @media screen and (max-width: 860px) {
+      display: none;
+    }
+  }
+  section#about > .inset > .ruler,
+  section#about > .vertical-line {
+    @media screen and (max-width: 680px) {
       display: none;
     }
   }

@@ -1,6 +1,6 @@
 ---
 title: 'A biography of Dr. Carole Berotte Joseph published in the International Kreyol Magazine'
-tags: [biography]
+tags: [Biography, Featured, News Article]
 image: ./international-kreyol-magazine.png
 pubDate: 2012-12-05
 isDraft: false

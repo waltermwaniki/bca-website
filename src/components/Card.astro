@@ -1,31 +1,73 @@
 ---
 import { Image } from "astro:assets";
+import Badge from "./Badge.astro";
 
 interface Props {
   title: string;
   href?: string;
   meta?: string;
   image: ImageMetadata;
+  tags?: string[];
   layout: "landscape" | "portrait";
 }
-
-const { href, title, meta, layout, image } = Astro.props;
+type badgeVariant = "primary" | "secondary" | "tertiary";
+const { href, title, meta, layout, image, tags } = Astro.props;
+const tagClassMap: Record<string, badgeVariant> = {
+  article: "primary",
+  books: "secondary",
+  "news article": "tertiary",
+  interview: "secondary",
+};
 ---
 
-<article class={layout}>
-  <a href={href}>
-    <Image src={image} alt={title} width={600} height={400} />
-    <div class="card-content">
-      <hgroup>
-        <p class="body-xs">{meta}</p>
-        <h3 class="title-md">{title}</h3>
-      </hgroup>
-      <slot />
-    </div>
-  </a>
+<article>
+  {
+    layout == "landscape" ? (
+      <a href={href} class="landscape">
+        <Image src={image} alt={title} width={600} height={400} />
+        <div class="card-content">
+          <hgroup>
+            <p class="body-xs">{meta}</p>
+            <h3 class="title-md">{title}</h3>
+          </hgroup>
+          <slot />
+          {tags && (
+            <div class="tag-collection">
+              {tags.map((tag) => (
+                <Badge variant={tagClassMap[tag.toLowerCase()]}>{tag}</Badge>
+              ))}
+            </div>
+          )}
+        </div>
+      </a>
+    ) : (
+      <a href={href} class="portrait">
+        <Image src={image} alt={title} width={600} height={400} />
+        <div class="card-content">
+          <hgroup style="max-width: min(90%, 42rem); margin-bottom: 1rem;">
+            <p
+              style="text-transform: uppercase; font-weight: 350;"
+              class="body-sm"
+            >
+              {meta}
+            </p>
+            <h3 class="title-lg">{title}</h3>
+          </hgroup>
+          <slot />
+          {tags && (
+            <div class="tag-collection">
+              {tags.map((tag) => (
+                <Badge variant={tagClassMap[tag.toLowerCase()]}>{tag}</Badge>
+              ))}
+            </div>
+          )}
+        </div>
+      </a>
+    )
+  }
 
   <style>
-    article.landscape a {
+    .landscape {
       display: flex;
       gap: 1.125rem;
       max-width: 62rem;
@@ -36,7 +78,7 @@ const { href, title, meta, layout, image } = Astro.props;
       }
     }
 
-    article.portrait a {
+    .portrait {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -64,6 +106,14 @@ const { href, title, meta, layout, image } = Astro.props;
       border-radius: 0.25rem;
       object-fit: cover;
       object-position: top;
+      background-position: center center;
+      /* filter: grayscale(90%); */
+    }
+
+    .tag-collection {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.25rem;
     }
   </style>
 </article>

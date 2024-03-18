@@ -9,6 +9,7 @@ import { SITE } from "@config";
 import { ViewTransitions } from "astro:transitions";
 
 import Footer from "@sections/footer.astro";
+import Contact from "@sections/contact.astro";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -102,6 +103,7 @@ const socialImageURL = new URL(
         navlink.addEventListener("click", updateActiveLink)
       );
     </script>
+    <Contact />
     <Footer />
   </body>
 </html>

@@ -10,7 +10,6 @@ import { Icon } from "astro-icon/components";
     <div class="socials">
       {
         SOCIALS.map((social) => {
-          console.log(social.icon.pack);
           return (
             <a href={social.href}>
               <Icon name={social.icon.name} />

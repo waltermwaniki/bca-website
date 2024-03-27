@@ -76,6 +76,14 @@ const tagClassMap: Record<string, badgeVariant> = {
         height: 8rem;
         aspect-ratio: 3 / 2;
       }
+      @container (max-width: 62rem) {
+        flex-direction: column;
+        img {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 21/9;
+        }
+      }
     }
 
     .portrait {
@@ -107,7 +115,6 @@ const tagClassMap: Record<string, badgeVariant> = {
       object-fit: cover;
       object-position: top;
       background-position: center center;
-      /* filter: grayscale(90%); */
     }
 
     .tag-collection {

@@ -1,18 +1,23 @@
 ---
-import Logo from "@assets/logo.svg";
-import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<header id="header" class="content-grid">
+<header id="header" class="grid-container">
   <div>
-    <a href="#home">
-      <Image
-        src={Logo}
-        alt="Berrote Consultancy Associates Logo"
-        id="header-logo"
-      />
+    <a href="#home" aria-label="Berrote Consultancy Associates Logo">
+      <Icon name="logo" />
     </a>
+    <button
+      id="hamburger-menu"
+      aria-label="Open Menu"
+      aria-expanded="false"
+      aria-controls="primary-nav-links"
+      aria-haspopup="true"
+    >
+      <Icon name="menu" class="menu-icon--open" />
+      <Icon name="close" class="menu-icon--close" />
+    </button>
     <nav>
       <a href="#about">About</a>
       <a href="#founder">Founder</a>
@@ -20,51 +25,23 @@ import Button from "../components/Button.astro";
       <a href="#services">Services</a>
       <a href="#articles">Articles</a>
       <Button href="#contact" className="cta">Contact</Button>
-      <button
-        id="hamburger-menu"
-        aria-label="Open Menu"
-        aria-expanded="false"
-        aria-controls="primary-nav-links"
-        aria-haspopup="true"
-      >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 -1 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="menu-icon"
-        >
-          <line x1="7" y1="12" x2="21" y2="12" class="line"> </line>
-          <line x1="3" y1="6" x2="21" y2="6" class="line"> </line>
-          <line x1="12" y1="18" x2="21" y2="18" class="line"> </line>
-          <line x1="18" y1="6" x2="6" y2="18" class="close"> </line>
-          <line x1="6" y1="6" x2="18" y2="18" class="close"> </line>
-        </svg>
-      </button>
     </nav>
   </div>
 </header>
 <script>
-  const logo = document.getElementById("header");
-  window.onscroll = function () {
-    scrollFunction();
-  };
-
-  function scrollFunction() {
-    if (!logo) return;
-    if (
-      document.body.scrollTop > 300 ||
-      document.documentElement.scrollTop > 300
-    ) {
-      logo.classList.add("scrolled");
-    } else {
-      logo.classList.remove("scrolled");
-    }
-  }
+  const menuButton = document.getElementById("hamburger-menu");
+  const navLinks = document.querySelectorAll("#header nav a");
+  menuButton?.addEventListener("click", () => {
+    menuButton.setAttribute(
+      "aria-expanded",
+      menuButton.getAttribute("aria-expanded") === "true" ? "false" : "true",
+    );
+  });
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      menuButton?.setAttribute("aria-expanded", "false");
+    });
+  });
 </script>
 <style>
   header {
@@ -72,32 +49,54 @@ import Button from "../components/Button.astro";
     top: 0;
     width: 100%;
     background-color: var(--secondary);
-    z-index: 100;
+    z-index: 1000;
     padding-block: 0.5rem;
     container-type: inline-size;
-    div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      @container (max-width: 720px) {
-        &:has([aria-expanded="true"]) {
-          transform: translateX(0);
-          flex-direction: column;
-          justify-content: start;
-          padding-block-start: 2rem;
-          gap: 4rem;
-          height: 100dvh;
-        }
-      }
+  }
+
+  header > div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+
+  header #header-logo {
+    grid-column: 1 / 2;
+    transition: all 0.5s ease-in-out;
+  }
+
+  header [data-icon="logo"] {
+    width: clamp(4rem, 6vw, 6rem);
+    height: clamp(4rem, 6vw, 6rem);
+  }
+
+  header.scrolled [data-icon="logo"] {
+    width: 3rem;
+  }
+
+  header > div > nav {
+    grid-column: 2 / -1;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+    background-color: var(--secondary);
+    transition: transform 0.5s ease-in-out;
+    @container (max-width: 720px) {
+      grid-row: 2 / 3;
+      grid-column: 1 / -1;
+      flex-direction: column;
+      justify-content: start;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      padding-block: 6rem;
+      filter: brightness(0.95);
     }
   }
 
-  header nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
   header nav a:not(.cta) {
     color: var(--primary);
     border-bottom: 2px solid transparent;
@@ -110,8 +109,7 @@ import Button from "../components/Button.astro";
   }
 
   header nav {
-    @container (max-width: 720px) {
-      flex-grow: 1;
+    /* flex-grow: 1;
       flex-direction: column;
       width: 100vw;
       color: var(--primary);
@@ -119,9 +117,9 @@ import Button from "../components/Button.astro";
       padding-block-end: 2rem;
       font-size: 1.5rem;
       font-weight: 300;
-      gap: 4rem;
-      transform: translateX(100%);
-      transition: transform 0.5s ease-in-out;
+      gap: 4rem; */
+    /* transform: translateX(100%); */
+    /* transition: transform 0.5s ease-in-out;
       & > .cta {
         width: 90%;
         margin-top: auto;
@@ -132,57 +130,59 @@ import Button from "../components/Button.astro";
       &:has([aria-expanded="true"]) {
         transform: translateX(0);
       }
-    }
+    } */
   }
 
-  #header-logo {
-    transition: all 0.5s ease-in-out;
-    width: clamp(4rem, 6vw, 6rem);
-    height: auto;
-  }
-  header.scrolled {
-    #header-logo {
-      width: 3rem;
-    }
-  }
   #hamburger-menu {
-    /* display: none; */
+    --_hamburger-menu-size: 2rem;
+    width: var(--_hamburger-menu-size);
+    height: var(--_hamburger-menu-size);
+    display: none;
     border: none;
     background-color: transparent;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateX(50%);
-    & > svg {
-      width: 2rem;
-      height: 2rem;
-    }
+    position: relative;
+    justify-self: end;
+    align-self: center;
+    grid-column: 2 / 3;
 
-    & .menu-icon line {
+    & > svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       transition: opacity 75ms ease-in-out;
     }
 
-    & .menu-icon .close {
+    & > .menu-icon--open {
+      opacity: 1;
+    }
+
+    & > .menu-icon--close {
       opacity: 0;
     }
 
     &[aria-expanded="true"] {
-      .menu-icon .line {
+      .menu-icon--open {
         opacity: 0;
       }
 
-      .menu-icon .close {
-        opacity: 1;
-      }
-
-      + .primary-menu-wrapper .primary-menu {
-        max-height: calc(
-          100vh - var(--primary-nav-height) - var(--secondary-nav-height)
-        );
-        overflow-x: hidden;
-        overflow-y: auto;
+      .menu-icon--close {
         opacity: 1;
       }
     }
+
+    @container (max-width: 720px) {
+      display: block;
+      + nav {
+        transform: translateX(100%);
+      }
+      &[aria-expanded="true"] + nav {
+        transform: translateX(0);
+      }
+    }
+  }
+  body:has(#hamburger-menu[aria-expanded="true"]) {
+    overflow: hidden;
   }
 </style>

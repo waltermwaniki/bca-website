@@ -11,9 +11,9 @@ const blogEntries = await getCollection("blogs");
   });
 ---
 
-<section id="articles" class="content-grid">
-  <h1 class="inset heading-lg">In the Press</h1>
-  <div class="inset blogs">
+<section id="articles" class="grid-container">
+  <h1 class="grid-content--inset heading-lg">In the Press</h1>
+  <div class="grid-content--inset blogs">
     {featuredBlog &&
     <div class="featured-blog">
       <Card
@@ -47,7 +47,7 @@ const blogEntries = await getCollection("blogs");
       }
     </div>
   </div>
-  <div class="inset video-carousel">
+  <div class="grid-content--inset video-carousel">
     <VideoCard
       title="Bronx Community College: Defining What Matters."
       description="Science, technology majors, engineering, and mathematics are among the most in-demand courses of study at Bronx Community College. President Carole M. Berotte Joseph talks STEM with a current student, an alum, and the chair of the BCC Chemistry department."
@@ -76,6 +76,7 @@ const blogEntries = await getCollection("blogs");
     justify-content: space-between;
     flex-wrap: wrap;
     gap: clamp(1rem, 8vw, 4rem);
+    container-type: inline-size;
   }
   .featured-blog {
     flex: 1 1 26rem;
@@ -86,6 +87,15 @@ const blogEntries = await getCollection("blogs");
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
+        
+    @media screen and (max-width: 768px){
+      &>hr {
+        display: none;
+      }
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(20rem, 1fr);overflow-x: auto;
+    }
   }
   hr {
     border: 0;
@@ -96,7 +106,8 @@ const blogEntries = await getCollection("blogs");
   .video-carousel {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: auto;
+    grid-auto-columns: minmax(20rem, 1fr);
+    overflow-x: auto;
     gap: clamp(1rem, 5vw, 3rem);
     margin-block-start: 2rem;
   }

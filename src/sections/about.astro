@@ -18,8 +18,8 @@ const aboutItems = [
 ];
 ---
 
-<section id="about" class="content-grid">
-  <div class="inset">
+<section id="about" class="grid-container">
+  <div class="grid-content--inset">
     {
       aboutItems.map((item) => {
         return (
@@ -178,7 +178,7 @@ const aboutItems = [
     position: relative;
     overflow: hidden;
   }
-  section#about > .inset > .ruler {
+  section#about > .grid-content--inset > .ruler {
     position: absolute;
     top: 50%;
     right: 4.5rem;
@@ -203,7 +203,7 @@ const aboutItems = [
     background-color: black;
   }
 
-  section#about .inset {
+  section#about .grid-content--inset {
     position: relative;
   }
   .about-item {
@@ -270,7 +270,7 @@ const aboutItems = [
       display: none;
     }
   }
-  section#about > .inset > .ruler,
+  section#about > .grid-content--inset > .ruler,
   section#about > .vertical-line {
     @media screen and (max-width: 680px) {
       display: none;

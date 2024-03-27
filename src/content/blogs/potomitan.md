@@ -1,6 +1,6 @@
 ---
 title: "Our language, our strength : a small conversation between Carole Berotte Joseph and Jacques Pierre"
-tags: [interview]
+tags: [Interview]
 image: ./potomitan.jpg
 pubDate: 2023-04-14
 isDraft: false

@@ -3,7 +3,12 @@ import { getCollection } from "astro:content";
 import Card from "@components/Card.astro";
 import VideoCard from "@components/VideoCard.astro";
 const blogEntries = await getCollection("blogs");
-const featuredBlog = blogEntries.shift();
+// const featuredBlog = blogEntries.shift();
+
+  // Find the first blog post with the "Featured" tag
+  const featuredBlog = blogEntries.find((blogPostEntry) => {
+    return blogPostEntry.data.tags && blogPostEntry.data.tags.includes("Featured");
+  });
 ---
 
 <section id="articles" class="content-grid">
@@ -16,20 +21,23 @@ const featuredBlog = blogEntries.shift();
         meta={featuredBlog.data.pubDate.toDateString() || "Published"}
         href={featuredBlog.data.url || featuredBlog.slug}
         image={featuredBlog.data.image}
+        tags={featuredBlog.data.tags}
         layout="portrait",
       >
-      {featuredBlog.data.excerpt || "Read More"}
+      <p class="excerpt body-md">{featuredBlog.data.excerpt || "Read More"}</p>
       </Card>
     </div>
     }
     <div class="blogs-list">
       {
-        blogEntries.map((blogPostEntry) => (
+        blogEntries.filter((blogPostEntry) => blogPostEntry !== featuredBlog)
+        .map((blogPostEntry) => (
           <Card
             title={blogPostEntry.data.title}
             meta={blogPostEntry.data.pubDate.toDateString() || "Published"}
             href={blogPostEntry.data.url || blogPostEntry.slug}
             image={blogPostEntry.data.image}
+            tags={blogPostEntry.data.tags}
             layout="landscape",
           >
           <p class="body-sm">{blogPostEntry.data.excerpt || "Read More"}</p>
@@ -67,7 +75,7 @@ const featuredBlog = blogEntries.shift();
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: clamp(1rem, 5vw, 3rem);
+    gap: clamp(1rem, 8vw, 4rem);
   }
   .featured-blog {
     flex: 1 1 26rem;
@@ -77,7 +85,7 @@ const featuredBlog = blogEntries.shift();
     min-width: min(100%, 36rem);
     display: flex;
     flex-flow: column nowrap;
-    gap: 2rem;
+    gap: 1rem;
   }
   hr {
     border: 0;

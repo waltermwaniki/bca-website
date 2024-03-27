@@ -1,8 +1,12 @@
 ---
+interface Props {
+  className?: string;
+  variant: "primary" | "secondary" | "tertiary";
+}
 const { className = "", variant = "primary", ...rest } = Astro.props;
 ---
 
-<div class:list={["badge", variant, className, "body-sm"]} {...rest}>
+<div class:list={["badge", variant, className, "body-xs"]} {...rest}>
   <slot>News Article</slot>
 </div>
 

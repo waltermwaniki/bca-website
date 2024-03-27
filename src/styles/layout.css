@@ -33,8 +33,13 @@
     grid-column: full;
 }
 
+body {
+    --section-padding-block: clamp(3rem, 5vw, 6rem);
+}
+
 section {
-    padding-block: clamp(3rem, 5vw, 6rem);
+    padding-block: var(--section-padding-block);
+    scroll-margin: var(--section-padding-block) 0;
 }
 
 .cta-group {

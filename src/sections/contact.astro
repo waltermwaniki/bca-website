@@ -24,7 +24,14 @@ import { Icon } from "astro-icon/components";
     <form action="submit">
       <fieldset>
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Name" required />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Name"
+          required
+          class="body-lg"
+        />
         <label for="email">Email</label>
         <input
           type="email"
@@ -32,10 +39,15 @@ import { Icon } from "astro-icon/components";
           name="email"
           placeholder="Email"
           required
+          class="body-lg"
         />
         <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Message" required
-        ></textarea>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Message"
+          required
+          class="body-lg"></textarea>
         <button>
           <span class="body-xl">Send</span>
         </button>
@@ -54,7 +66,7 @@ import { Icon } from "astro-icon/components";
   }
   .two-col {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: 2rem 1rem;
   }
   .socials > :not(:last-child) {
@@ -93,7 +105,7 @@ import { Icon } from "astro-icon/components";
   fieldset {
     --_form-border: 1px solid var(--primary);
     display: grid;
-    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-rows: 1fr 1fr auto;
     border-radius: 0.5rem;
     border: none;
     border-inline: var(--_form-border);
@@ -126,14 +138,23 @@ import { Icon } from "astro-icon/components";
     &:focus {
       outline: none;
       background-color: var(--primary);
-      color: var(--tertiary);
+      color: var(--secondary);
     }
   }
   fieldset > :is(input, textarea) {
-    &:hover,
     &:focus {
       outline: none;
       background-color: var(--neutral-95);
     }
+    &:hover {
+      outline: none;
+      background-color: var(--secondary);
+    }
+  }
+
+  fieldset > textarea {
+    resize: vertical;
+    height: 8rem;
+    min-height: 8rem;
   }
 </style>

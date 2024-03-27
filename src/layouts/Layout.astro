@@ -8,6 +8,7 @@ import "@styles/global.css";
 import { SITE } from "@config";
 import { ViewTransitions } from "astro:transitions";
 
+import Header from "@sections/header.astro";
 import Footer from "@sections/footer.astro";
 import Contact from "@sections/contact.astro";
 
@@ -83,6 +84,7 @@ const socialImageURL = new URL(
     <ViewTransitions />
   </head>
   <body>
+    <Header />
     <slot />
     <script is:inline>
       const navLinks = document.querySelectorAll("nav a");

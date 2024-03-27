@@ -15,10 +15,36 @@ import Button from "../components/Button.astro";
     </a>
     <nav>
       <a href="#about">About</a>
-      <a href="#mission">Mission</a>
+      <a href="#founder">Founder</a>
+      <a href="#mission-vision">Mission</a>
       <a href="#services">Services</a>
-      <a href="#press">Press</a>
+      <a href="#articles">Articles</a>
       <Button href="#contact" className="cta">Contact</Button>
+      <button
+        id="hamburger-menu"
+        aria-label="Open Menu"
+        aria-expanded="false"
+        aria-controls="primary-nav-links"
+        aria-haspopup="true"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 -1 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="menu-icon"
+        >
+          <line x1="7" y1="12" x2="21" y2="12" class="line"> </line>
+          <line x1="3" y1="6" x2="21" y2="6" class="line"> </line>
+          <line x1="12" y1="18" x2="21" y2="18" class="line"> </line>
+          <line x1="18" y1="6" x2="6" y2="18" class="close"> </line>
+          <line x1="6" y1="6" x2="18" y2="18" class="close"> </line>
+        </svg>
+      </button>
     </nav>
   </div>
 </header>
@@ -42,15 +68,28 @@ import Button from "../components/Button.astro";
 </script>
 <style>
   header {
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     background-color: var(--secondary);
+    z-index: 100;
     padding-block: 0.5rem;
+    container-type: inline-size;
     div {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      @container (max-width: 720px) {
+        &:has([aria-expanded="true"]) {
+          transform: translateX(0);
+          flex-direction: column;
+          justify-content: start;
+          padding-block-start: 2rem;
+          gap: 4rem;
+          height: 100dvh;
+        }
+      }
     }
   }
 
@@ -70,6 +109,32 @@ import Button from "../components/Button.astro";
     }
   }
 
+  header nav {
+    @container (max-width: 720px) {
+      flex-grow: 1;
+      flex-direction: column;
+      width: 100vw;
+      color: var(--primary);
+      background-color: var(--secondary);
+      padding-block-end: 2rem;
+      font-size: 1.5rem;
+      font-weight: 300;
+      gap: 4rem;
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in-out;
+      & > .cta {
+        width: 90%;
+        margin-top: auto;
+      }
+      & > #hamburger-menu {
+        display: block;
+      }
+      &:has([aria-expanded="true"]) {
+        transform: translateX(0);
+      }
+    }
+  }
+
   #header-logo {
     transition: all 0.5s ease-in-out;
     width: clamp(4rem, 6vw, 6rem);
@@ -78,6 +143,46 @@ import Button from "../components/Button.astro";
   header.scrolled {
     #header-logo {
       width: 3rem;
+    }
+  }
+  #hamburger-menu {
+    /* display: none; */
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(50%);
+    & > svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    & .menu-icon line {
+      transition: opacity 75ms ease-in-out;
+    }
+
+    & .menu-icon .close {
+      opacity: 0;
+    }
+
+    &[aria-expanded="true"] {
+      .menu-icon .line {
+        opacity: 0;
+      }
+
+      .menu-icon .close {
+        opacity: 1;
+      }
+
+      + .primary-menu-wrapper .primary-menu {
+        max-height: calc(
+          100vh - var(--primary-nav-height) - var(--secondary-nav-height)
+        );
+        overflow-x: hidden;
+        overflow-y: auto;
+        opacity: 1;
+      }
     }
   }
 </style>

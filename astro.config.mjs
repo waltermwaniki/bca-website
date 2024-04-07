@@ -8,5 +8,5 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://example.com",
   server: { port: 4321, host: true },
-  integrations: [mdx(), sitemap(), icon({ path: "./icons" })],
+  integrations: [mdx(), sitemap(), icon({ iconsDir: "icons" })],
 });

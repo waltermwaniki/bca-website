@@ -2,13 +2,10 @@
 import { getCollection } from "astro:content";
 import Card from "@components/Card.astro";
 const blogEntries = await getCollection("blogs");
-import Button from "@components/Button.astro";
-// const featuredBlog = blogEntries.shift();
 
-  // Find the first blog post with the "Featured" tag
-  const featuredBlog = blogEntries.find((blogPostEntry) => {
-    return blogPostEntry.data.tags && blogPostEntry.data.tags.includes("Featured");
-  });
+const featuredBlog = blogEntries.find((blogPostEntry) => {
+  return blogPostEntry.data.tags && blogPostEntry.data.tags.includes("Featured");
+});
 ---
 
 <section id="articles" class="grid-container">

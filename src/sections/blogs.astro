@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Card from "@components/Card.astro";
 const blogEntries = await getCollection("blogs");
+import Button from "@components/Button.astro";
 // const featuredBlog = blogEntries.shift();
 
   // Find the first blog post with the "Featured" tag
@@ -72,6 +73,7 @@ const blogEntries = await getCollection("blogs");
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
+
 
     @media screen and (max-width: 768px){
       &>hr {

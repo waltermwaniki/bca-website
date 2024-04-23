@@ -13,7 +13,15 @@ const { title, description, id, date } = Astro.props;
   <YouTube {id} />
   <div class="card-content">
     <hgroup>
-      <p class="body-xs">{date}</p>
+      <p class="body-xs">
+        {
+          date.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })
+        }
+      </p>
       <h3 class="title-md">{title}</h3>
     </hgroup>
     <p class="body-md">{description}</p>
@@ -27,16 +35,16 @@ const { title, description, id, date } = Astro.props;
   }
   hgroup {
     max-width: min(90%, 42rem);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    & > h3 {
+      margin-top: 0.25rem;
+    }
   }
   .card-content {
-    --_card-border: 1px solid var(--primary);
+    --_text-color: var(--text-color, var(--neutral-10));
     padding-block: 1.5rem;
-    padding-inline: 1rem;
-    border-right: var(--_card-border);
-    border-left: var(--_card-border);
-    border-bottom: var(--_card-border);
-    border-bottom-right-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
+    border-bottom: 1px solid var(--_text-color);
+    color: var(--_text-color);
+    flex: 1;
   }
 </style>

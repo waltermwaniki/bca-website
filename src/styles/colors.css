@@ -20,3 +20,23 @@
 
     --bg-gray: var(--neutral-90);
 }
+
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-primary-dark {
+    background-color: var(--primary-dark);
+}
+
+.bg-secondary {
+    background-color: var(--secondary);
+}
+
+.bg-tertiary {
+    background-color: var(--tertiary);
+}
+
+.bg-gray {
+    background-color: var(--bg-gray);
+}

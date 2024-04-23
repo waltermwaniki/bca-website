@@ -1,0 +1,47 @@
+---
+import VideoCard from "@components/VideoCard.astro";
+---
+
+<section id="videos" class="grid-container">
+  <h1 class="grid-column--inset heading-lg">Videos</h1>
+  <div class="grid-column--inset video-carousel">
+    <VideoCard
+      title="Selebrasyon jounen entènasyonal lang matènèl, Duke University 2023"
+      description="Nan non Duke University, n ap salye kouraj tout pèp k ap batay pou defann lang yo, espesyalman pèp ki pa gen chans pou yo aprann nan lang yo dòmi leve ak li a. Li enpòtan pou tout moun jwenn sèvis nan lang yo konprann pi byen an. Lang yon pèp se premye zouti li gen pou li kapab konprann reyalite l, transfòme reyalite l epi kite mak fabrik li nan mond lan."
+      date={new Date("Mar 15, 2023")}
+      id="wTjeLZtdRWM"
+    />
+    <VideoCard
+      title="Bronx Community College: Defining What Matters."
+      description="Science, technology majors, engineering, and mathematics are among the most in-demand courses of study at Bronx Community College. President Carole M. Berotte Joseph talks STEM with a current student, an alum, and the chair of the BCC Chemistry department."
+      date={new Date("September 17, 2014")}
+      id="CEKxhowaqdQ"
+    />
+    <VideoCard
+      title="One to One: Carole Berotte Joseph, President, Bronx Community College/CUNY"
+      description="Host Sheryl McCarthy welcomes Bronx Community College/CUNY's newly appointed president, Carole Berotte Joseph to talk about the value of community colleges to students and the communities they represent. (Taped: 04/16/12)"
+      date={new Date("August 6, 2012")}
+      id="iyX5IGqV4Lk"
+    />
+  </div>
+</section>
+
+<style>
+  section#videos {
+    background-color: var(--secondary);
+  }
+  .heading-lg {
+    color: var(--primary);
+    margin-bottom: clamp(1rem, 5vw, 2rem);
+  }
+  .video-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(500px, 100%), 1fr));
+    grid-template-rows: 1fr;
+    gap: clamp(1rem, 5vw, 3rem);
+    --text-color: var(--neutral-10);
+    & > article {
+      height: 100%;
+    }
+  }
+</style>

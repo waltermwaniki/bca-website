@@ -14,6 +14,7 @@
     "@astrojs/mdx": "^2.1.1",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.0.5",
+    "@astrojs/svelte": "^5.4.0",
     "@fontsource-variable/inter": "^5.0.17",
     "@fontsource-variable/noto-serif": "^5.0.5",
     "@fontsource-variable/roboto-serif": "^5.0.13",
@@ -23,6 +24,7 @@
     "astro-icon": "^1.1.0",
     "install": "^0.13.0",
     "npm": "^10.5.0",
-    "typescript": "^5.3.3"
+    "svelte": "^4.2.15",
+    "typescript": "^5.4.5"
   }
 }

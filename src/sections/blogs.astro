@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Card from "@components/Card.astro";
-import VideoCard from "@components/VideoCard.astro";
 const blogEntries = await getCollection("blogs");
 // const featuredBlog = blogEntries.shift();
 
@@ -12,8 +11,8 @@ const blogEntries = await getCollection("blogs");
 ---
 
 <section id="articles" class="grid-container">
-  <h1 class="grid-content--inset heading-lg">In the Press</h1>
-  <div class="grid-content--inset blogs">
+  <h1 class="grid-column--inset heading-lg">In the Press</h1>
+  <div class="grid-column--inset blogs">
     {featuredBlog &&
     <div class="featured-blog">
       <Card
@@ -47,20 +46,6 @@ const blogEntries = await getCollection("blogs");
       }
     </div>
   </div>
-  <div class="grid-content--inset video-carousel">
-    <VideoCard
-      title="Bronx Community College: Defining What Matters."
-      description="Science, technology majors, engineering, and mathematics are among the most in-demand courses of study at Bronx Community College. President Carole M. Berotte Joseph talks STEM with a current student, an alum, and the chair of the BCC Chemistry department."
-      date={new Date("September 17, 2014")}
-      id="CEKxhowaqdQ"
-      />
-    <VideoCard
-      title="Bronx Community College: Defining What Matters."
-      description="Science, technology majors, engineering, and mathematics are among the most in-demand courses of study at Bronx Community College. President Carole M. Berotte Joseph talks STEM with a current student, an alum, and the chair of the BCC Chemistry department."
-      date={new Date("September 17, 2014")}
-      id="CEKxhowaqdQ"
-      />
-  </div>
 </section>
 
 <style>
@@ -87,7 +72,7 @@ const blogEntries = await getCollection("blogs");
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
-        
+
     @media screen and (max-width: 768px){
       &>hr {
         display: none;
@@ -102,13 +87,5 @@ const blogEntries = await getCollection("blogs");
     height: 1px;
     background: var(--primary);
     opacity: 0.5;
-  }
-  .video-carousel {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(20rem, 1fr);
-    overflow-x: auto;
-    gap: clamp(1rem, 5vw, 3rem);
-    margin-block-start: 2rem;
   }
 </style>

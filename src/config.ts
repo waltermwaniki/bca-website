@@ -11,8 +11,8 @@ export const SITE: Site = {
 export const LOCALE = ["en-EN"];
 
 export const CONTACT = {
-    email: "walter.g.mwaniki@gmail.com",
-    phone: "8454530183",
+    email: "cmberotte03@gmail.com",
+    phone: "7818016745",
     address: "New York, NY",
 };
 

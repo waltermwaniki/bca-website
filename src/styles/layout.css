@@ -21,11 +21,11 @@
     --padding-inline: 1rem;
 }
 
-.grid-container .grid-content--inset {
+.grid-container .grid-column--inset {
     grid-column: inset;
 }
 
-.grid-container .grid-content--narrow {
+.grid-container .grid-column--narrow {
     grid-column: narrow;
 }
 
@@ -47,4 +47,8 @@ section {
     flex-wrap: wrap;
     gap: clamp(1rem, 3.2vw, 2rem);
     margin-block-start: 1.5rem;
+}
+
+.mb-2 {
+    margin-block-end: 2rem;
 }

@@ -1,41 +1,79 @@
 ---
-import Accordion from "@components/Accordion.astro";
-import AccordionItem from "@components/AccordionItem.astro";
+import AccordionItem from "@components/AccordionItem.svelte";
+import AccordionGroup from "@components/AccordionGroup.svelte";
 import Button from "@components/Button.astro";
 import { servicesCollection } from "@data/services";
+import { Icon } from "astro-icon/components";
 ---
 
-<section id="services">
-  <div>
-    <h2>Our Services</h2>
-    <Button href="#" className="cta" />
-  </div>
-  <Accordion className="services" padding="2rem" outlined>
-    {
-      servicesCollection.map((service) => (
-        <AccordionItem>
-          <h3 slot="target">{service.title}</h3>
-          <p>{service.description}</p>
-        </AccordionItem>
-      ))
-    }
-  </Accordion>
+<section id="services" class="grid-container">
+  <h2 class="heading-lg">Our Services</h2>
+  <AccordionGroup>
+    <div class="services-grid">
+      {
+        servicesCollection.map((service, idx) => (
+          <AccordionItem {idx} client:load>
+            <div slot="title" class="service-header">
+              <Icon name={service.icon} size={24} />
+              <h3 class="body-lg">{service.title}</h3>
+            </div>
+            <div slot="content" class="service-content">
+              <p>{service.description}</p>
+            </div>
+          </AccordionItem>
+        ))
+      }
+    </div>
+  </AccordionGroup>
+  <Button href="#contact" className="cta"> Get In Touch </Button>
 </section>
+<script>
+  function addAccordionListeners() {
+    const services = document.getElementById("services");
+    const accordionItems = services?.querySelectorAll(".accordion-item");
+    accordionItems?.forEach((item, idx) => {
+      item.addEventListener("accordion-open", (e) => {
+        console.log("accordion-open", idx, e);
+      });
+    });
+  }
+  window.addEventListener("load", addAccordionListeners);
+</script>
 
 <style>
-  section#services {
+  #services h2 {
+    color: var(--primary);
+  }
+  .services-grid {
+    --gap: 3rem;
+    --accordion-item-width: min(
+      100%,
+      calc(var(--inset-max-width) / 2 - var(--gap))
+    );
+    margin-block: 4rem;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--accordion-item-width), 1fr)
+    );
+    gap: var(--gap) calc(var(--gap) * 2);
   }
-  ul.services {
-    height: max-content;
-  }
-  div:first-child {
+  .service-header {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    align-items: center;
+    gap: calc(var(--gap) * 0.25);
+    color: var(--neutral-10);
+  }
+  .service-content {
+    padding: clamp(0.5rem, 3%, 1rem);
+    & p {
+      max-width: 90%;
+      padding-inline-start: 1rem;
+    }
   }
   .cta {
-    width: max-content;
+    margin-top: 3rem;
   }
 </style>
+
+<script></script>

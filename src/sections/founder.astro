@@ -16,18 +16,28 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
       height="400"
     />
     <div class="text-cta-group">
-      <p class="body-xl description">
-        Dr. Joseph's distinguished career is marked by her tenure as President
-        of Bronx Community College and her commitment to academic innovation and
-        community partnership. Her accolades, including the “Haitian American
-        Connections Award” and the “Gandhi Award for Excellence,” attest to her
-        impact on education and leadership development. With Berotte Consultancy
-        Associates, we extend this legacy, mentoring leaders, and fostering
-        environments where ideas and potential thrive.
+      <p class="body-xl title">Carole M. Berotte Joseph, PhD.</p>
+      <p class="body-lg description">
+        Dr. Carole Berrotte Joseph is a seasoned academic servant leader with
+        over 40 years of experience managing higher education institutions.
+        Carole served as a President and CEO of Bronx Community College (BCC),
+        where she strategically enhanced institutional impact and fostered new
+        community partnerships, positioning BCC as a solutions-oriented partner.
+        With a robust background in academia, Carole possesses a broad network,
+        grant writing prowess, and strategic leadership skills. Notable
+        achievements include student-centered initiatives, mentoring numerous
+        team members for leadership roles, managing budgets exceeding $80
+        million, and establishing impactful study and research abroad programs.
+        Carole's advocacy efforts led to the establishment of the CUNY Haitian
+        Studies Institute, earning her prestigious recognition such as the
+        "Haitian American Connections Award" and the Gandhi Award for
+        Excellence. With Berotte Consultancy Associates, we extend this legacy,
+        mentoring leaders, and fostering environments where ideas and potential
+        thrive.
       </p>
       <div class="cta-group">
         <Button href="#services">Get In Touch</Button>
-        <Button href="#" variant="secondary">Learn More</Button>
+        <Button href="/about" variant="secondary">Learn More</Button>
       </div>
     </div>
   </div>
@@ -37,40 +47,61 @@ import carolePortrait from "../assets/carole-berotte-joseph.jpeg";
     background-color: var(--secondary);
   }
   .heading-lg {
-    color: var(--primary);
-    margin-bottom: clamp(1rem, 8vw, 2.5rem);
+    color: var(--neutral-30);
+    margin-bottom: clamp(1rem, 4vw, 1.5rem);
   }
-  .content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem clamp(1rem, 8vw, 8rem);
-    transform: scaleX(-1);
+  p.title {
+    color: var(--primary);
+    margin-bottom: 0.25rem;
   }
   img {
-    width: 100%;
-    height: 100%;
     aspect-ratio: 3 / 2;
     object-fit: cover;
     object-position: center center;
     border-radius: 1rem;
     transform: scaleX(-1);
+    margin-bottom: clamp(1rem, 4vw, 1.5rem);
   }
-  .text-cta-group {
-    min-width: 300px;
-    max-width: 96ch;
-    justify-self: end;
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 1rem;
-    justify-content: space-around;
-    transform: scaleX(-1);
-  }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 1024px) {
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem clamp(1rem, 8vw, 8rem);
+      transform: scaleX(-1);
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      grid-column: 1 / 2;
+      transform: scaleX(-1);
+    }
+    .text-cta-group {
+      min-width: 300px;
+      max-width: 120ch;
+      justify-self: end;
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 0.5rem;
+      justify-content: space-around;
+      transform: scaleX(-1);
+      & .description {
+        line-height: 1.75;
+      }
+    }
+
     .text-cta-group {
       grid-column: 2 / -1;
     }
-    img {
-      grid-column: 1 / 2;
-    }
   }
+  /* @media screen and (max-width: 1024px) {
+    .content {
+      grid-template-columns: 1fr;
+    }
+    img {
+      grid-row: 1 / 2;
+    }
+    .text-cta-group {
+      grid-row: 2 / 3;
+    }
+  } */
 </style>

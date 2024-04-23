@@ -5,10 +5,10 @@ import { Icon } from "astro-icon/components";
 
 <header id="header" class="grid-container">
   <div>
-    <a href="#home" aria-label="Berrote Consultancy Associates Logo">
+    <a href="/#home" aria-label="Berrote Consultancy Associates Logo">
       <Icon name="logo" />
     </a>
-    <button
+    <!-- <button
       id="hamburger-menu"
       aria-label="Open Menu"
       aria-expanded="false"
@@ -17,14 +17,14 @@ import { Icon } from "astro-icon/components";
     >
       <Icon name="menu" class="menu-icon--open" />
       <Icon name="close" class="menu-icon--close" />
-    </button>
-    <nav>
+    </button> -->
+    <nav class="body-lg">
       <a href="#about">About</a>
       <a href="#founder">Founder</a>
       <a href="#mission-vision">Mission</a>
       <a href="#services">Services</a>
       <a href="#articles">Articles</a>
-      <Button href="#contact" className="cta">Contact</Button>
+      <Button href="#contact" className="cta">Get in Touch</Button>
     </nav>
   </div>
 </header>
@@ -34,7 +34,7 @@ import { Icon } from "astro-icon/components";
   menuButton?.addEventListener("click", () => {
     menuButton.setAttribute(
       "aria-expanded",
-      menuButton.getAttribute("aria-expanded") === "true" ? "false" : "true",
+      menuButton.getAttribute("aria-expanded") === "true" ? "false" : "true"
     );
   });
   navLinks.forEach((link) => {
@@ -59,41 +59,26 @@ import { Icon } from "astro-icon/components";
     grid-template-columns: auto 1fr;
   }
 
-  header #header-logo {
-    grid-column: 1 / 2;
-    transition: all 0.5s ease-in-out;
-  }
-
   header [data-icon="logo"] {
-    width: clamp(4rem, 6vw, 6rem);
-    height: clamp(4rem, 6vw, 6rem);
-  }
-
-  header.scrolled [data-icon="logo"] {
-    width: 3rem;
+    width: clamp(3rem, 6vw, 6rem);
+    height: clamp(3rem, 6vw, 6rem);
   }
 
   header > div > nav {
-    grid-column: 2 / -1;
     justify-self: end;
+    background-color: var(--secondary);
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 2rem;
-    background-color: var(--secondary);
-    transition: transform 0.5s ease-in-out;
+    flex-wrap: wrap;
     @container (max-width: 720px) {
-      grid-row: 2 / 3;
-      grid-column: 1 / -1;
+      background-color: transparent;
+      gap: 0.5rem;
       flex-direction: column;
-      justify-content: start;
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100vw;
-      height: 100vh;
-      padding-block: 6rem;
-      filter: brightness(0.95);
+      & > a:not(.cta) {
+        display: none;
+      }
     }
   }
 
@@ -109,31 +94,30 @@ import { Icon } from "astro-icon/components";
   }
 
   header nav {
-    /* flex-grow: 1;
-      flex-direction: column;
-      width: 100vw;
-      color: var(--primary);
-      background-color: var(--secondary);
-      padding-block-end: 2rem;
-      font-size: 1.5rem;
-      font-weight: 300;
-      gap: 4rem; */
+    /* flex-grow: 1; */
+    /* flex-direction: column; */
+    /* width: 100vw;
+    color: var(--primary);
+    background-color: var(--secondary);
+    padding-block-end: 2rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    gap: 4rem; */
     /* transform: translateX(100%); */
     /* transition: transform 0.5s ease-in-out;
-      & > .cta {
-        width: 90%;
-        margin-top: auto;
-      }
-      & > #hamburger-menu {
-        display: block;
-      }
-      &:has([aria-expanded="true"]) {
-        transform: translateX(0);
-      }
+    & > .cta {
+      width: 90%;
+      margin-top: auto;
+    }
+    & > #hamburger-menu {
+      display: block;
+    }
+    &:has([aria-expanded="true"]) {
+      transform: translateX(0);
     } */
   }
 
-  #hamburger-menu {
+  /* #hamburger-menu {
     --_hamburger-menu-size: 2rem;
     width: var(--_hamburger-menu-size);
     height: var(--_hamburger-menu-size);
@@ -181,8 +165,8 @@ import { Icon } from "astro-icon/components";
         transform: translateX(0);
       }
     }
-  }
-  body:has(#hamburger-menu[aria-expanded="true"]) {
+  }*/
+  /* body:has(#hamburger-menu[aria-expanded="true"]) {
     overflow: hidden;
-  }
+  } */
 </style>

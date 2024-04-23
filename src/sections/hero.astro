@@ -2,8 +2,8 @@
 import Button from "@components/Button.astro";
 ---
 
-<section id="home" class="content-grid">
-  <div class="inset">
+<section id="home" class="grid-container">
+  <div class="grid-content--inset">
     <p class="body-md tagline">Transforming learning, Enriching lives</p>
     <h1 class="display-lg headline">
       Berotte<br />Consultancy<br />Associates
@@ -60,7 +60,7 @@ import Button from "@components/Button.astro";
     /* position: relative; */
     overflow: hidden;
   }
-  .inset {
+  .grid-content--inset {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -73,6 +73,7 @@ import Button from "@components/Button.astro";
   }
   .tagline {
     max-width: 80vw;
+    text-wrap: balance;
   }
   .description {
     max-width: 50ch;
@@ -92,7 +93,6 @@ import Button from "@components/Button.astro";
     position: absolute;
     bottom: calc(-1 * var(--section-padding-block));
     right: 3.8rem;
-    /* transform-origin: 30% bottom; */
     transform: translateX(50%);
     z-index: 500;
     @media screen and (max-width: 680px) {

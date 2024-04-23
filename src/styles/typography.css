@@ -8,7 +8,7 @@
 .display-lg {
     font-family: var(--secondary-font);
     font-size: 7.5rem;
-    font-size: clamp(3.2rem, 8vw, 7.5rem);
+    font-size: clamp(3rem, 8vw, 7.5rem);
     font-weight: 350;
     line-height: 1.1;
     text-wrap: balance;

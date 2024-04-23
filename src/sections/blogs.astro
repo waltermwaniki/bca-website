@@ -12,46 +12,43 @@ import Button from "@components/Button.astro";
   });
 ---
 
-<section id="articles" class="content-grid">
-  <h1 class="inset heading-lg">In the Press</h1>
-  <div class="content">
-    <div class="inset blogs">
-      {featuredBlog &&
-      <div class="featured-blog">
-        <Card
-          title={featuredBlog.data.title}
-          meta={featuredBlog.data.pubDate.toDateString() || "Published"}
-          href={featuredBlog.data.url || featuredBlog.slug}
-          image={featuredBlog.data.image}
-          tags={featuredBlog.data.tags}
-          layout="portrait",
-        >
-        <p class="excerpt body-md">{featuredBlog.data.excerpt || "Read More"}</p>
-        </Card>
-      </div>
-      }
-      <div class="blogs-list">
-        {
-          blogEntries.filter((blogPostEntry) => blogPostEntry !== featuredBlog)
-          .map((blogPostEntry) => (
-            <Card
-              title={blogPostEntry.data.title}
-              meta={blogPostEntry.data.pubDate.toDateString() || "Published"}
-              href={blogPostEntry.data.url || blogPostEntry.slug}
-              image={blogPostEntry.data.image}
-              tags={blogPostEntry.data.tags}
-              layout="landscape",
-            >
-            <p class="excerpt body-sm">{blogPostEntry.data.excerpt || "Read More"}</p>
-            </Card>
-            <hr />
-          ))
-        }
-      </div>
+<section id="articles" class="grid-container">
+  <h1 class="grid-content--inset heading-lg">In the Press</h1>
+  <div class="grid-content--inset blogs">
+    {featuredBlog &&
+    <div class="featured-blog">
+      <Card
+        title={featuredBlog.data.title}
+        meta={featuredBlog.data.pubDate.toDateString() || "Published"}
+        href={featuredBlog.data.url || featuredBlog.slug}
+        image={featuredBlog.data.image}
+        tags={featuredBlog.data.tags}
+        layout="portrait",
+      >
+      <p class="excerpt body-md">{featuredBlog.data.excerpt || "Read More"}</p>
+      </Card>
     </div>
-    <Button className="readmore-button" href="#services">Read more articles</Button>
+    }
+    <div class="blogs-list">
+      {
+        blogEntries.filter((blogPostEntry) => blogPostEntry !== featuredBlog)
+        .map((blogPostEntry) => (
+          <Card
+            title={blogPostEntry.data.title}
+            meta={blogPostEntry.data.pubDate.toDateString() || "Published"}
+            href={blogPostEntry.data.url || blogPostEntry.slug}
+            image={blogPostEntry.data.image}
+            tags={blogPostEntry.data.tags}
+            layout="landscape",
+          >
+          <p class="body-sm">{blogPostEntry.data.excerpt || "Read More"}</p>
+          </Card>
+          <hr />
+        ))
+      }
+    </div>
   </div>
-  <div class="inset video-carousel">
+  <div class="grid-content--inset video-carousel">
     <VideoCard
       title="Bronx Community College: Defining What Matters."
       description="Science, technology majors, engineering, and mathematics are among the most in-demand courses of study at Bronx Community College. President Carole M. Berotte Joseph talks STEM with a current student, an alum, and the chair of the BCC Chemistry department."
@@ -80,6 +77,7 @@ import Button from "@components/Button.astro";
     justify-content: space-between;
     flex-wrap: wrap;
     gap: clamp(1rem, 8vw, 4rem);
+    container-type: inline-size;
   }
   .featured-blog {
     flex: 1 1 26rem;
@@ -90,6 +88,15 @@ import Button from "@components/Button.astro";
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
+
+    @media screen and (max-width: 768px){
+      &>hr {
+        display: none;
+      }
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(20rem, 1fr);overflow-x: auto;
+    }
   }
   hr {
     border: 0;
@@ -100,7 +107,8 @@ import Button from "@components/Button.astro";
   .video-carousel {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: auto;
+    grid-auto-columns: minmax(20rem, 1fr);
+    overflow-x: auto;
     gap: clamp(1rem, 5vw, 3rem);
     margin-block-start: 2rem;
   }

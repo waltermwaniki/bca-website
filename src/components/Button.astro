@@ -32,4 +32,17 @@ const { href, className = "", variant = "primary", ...rest } = Astro.props;
     border-color: var(--primary);
     color: var(--primary);
   }
+
+  /* Hover effects */
+  a.primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: var(--neutral-100);
+  }
+
+  a.secondary:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
 </style>

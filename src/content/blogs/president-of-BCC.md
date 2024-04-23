@@ -1,7 +1,7 @@
 ---
 title: Dr. Carole Berotte Joseph Named President of Bronx Community College
 tags: [News Article]
-image: ./potomitan.jpg
+image: ./president-of-bcc.jpg
 pubDate: 2012-05-05
 isDraft: false
 isExternal: true

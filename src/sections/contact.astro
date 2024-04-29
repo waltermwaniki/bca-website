@@ -20,7 +20,13 @@ import { Icon } from "astro-icon/components";
         }
       </div>
     </div>
-    <form action="submit">
+    <form
+      name="contact"
+      action="/pages/success#contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
       <fieldset>
         <label for="name">Name</label>
         <input

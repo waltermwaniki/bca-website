@@ -1,0 +1,62 @@
+---
+import Layout from "@layouts/Layout.astro";
+import MainBanner from "@sections/hero.astro";
+import WhyUs from "@sections/why-us.astro";
+import Founder from "@sections/founder.astro";
+import MissionVision from "@sections/mission-vision.astro";
+import Blogs from "@sections/blogs.astro";
+import Services from "@sections/services.astro";
+import Videos from "@sections/videos.astro";
+---
+
+<Layout title="Your Form Submission Has Been Recieved">
+  <main>
+    <!-- <MainBanner />
+    <WhyUs />
+    <Founder />
+    <MissionVision />
+    <Services />
+    <Blogs />
+    <Videos /> -->
+  </main>
+  <section id="contact" class="grid-container" slot="contact">
+    <h2 class="heading-md mb-2">Your Form Submission Has Been Recieved</h2>
+    <p class="body-lg mb-2">
+      Thank you for reaching out to us. We will get back to you as soon as
+      possible.
+    </p>
+    <a href="/">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon-md icon-inline"
+      >
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to homepage
+    </a>
+  </section>
+</Layout>
+<style>
+  .icon-lg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .icon-md {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .icon-inline {
+    vertical-align: middle;
+  }
+  .icon-sm {
+    width: 1rem;
+    height: 1rem;
+  }
+</style>

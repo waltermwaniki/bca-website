@@ -105,7 +105,9 @@ const socialImageURL = new URL(
         navlink.addEventListener("click", updateActiveLink)
       );
     </script>
-    <Contact />
+    <slot name="contact">
+      <Contact />
+    </slot>
     <Footer />
   </body>
 </html>

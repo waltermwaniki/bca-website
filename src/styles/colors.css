@@ -13,13 +13,14 @@
     --neutral-60: hsl(210, 0%, 60%);
     --neutral-80: hsl(210, 0%, 80%);
     --neutral-90: hsl(210, 7%, 89%);
-    --neutral-95: hsl(210, 15%, 92%);
+    --neutral-92: hsl(210, 15%, 92%);
+    --neutral-95: hsl(210, 15%, 95%);
     --neutral-100: hsl(210, 0%, 98%);
 
     --text-main: var(--neutral-10);
     --text-dim: var(--neutral-50);
 
-    --bg-gray: var(--neutral-90);
+    --bg-gray: var(--neutral-95);
 }
 
 .bg-primary {
